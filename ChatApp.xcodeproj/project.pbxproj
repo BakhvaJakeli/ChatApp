@@ -10,12 +10,14 @@
 		8F80CCC229F0586100F121BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F80CCC129F0586100F121BD /* AppDelegate.swift */; };
 		8F80CCC429F0586100F121BD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F80CCC329F0586100F121BD /* SceneDelegate.swift */; };
 		8F80CCC629F0586100F121BD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F80CCC529F0586100F121BD /* ViewController.swift */; };
-		8F80CCC929F0586100F121BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F80CCC729F0586100F121BD /* Main.storyboard */; };
-		8F80CCCB29F0586300F121BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F80CCCA29F0586300F121BD /* Assets.xcassets */; };
 		8F80CCCE29F0586300F121BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F80CCCC29F0586300F121BD /* LaunchScreen.storyboard */; };
 		8F80CCD929F0586300F121BD /* ChatAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F80CCD829F0586300F121BD /* ChatAppTests.swift */; };
 		8F80CCE329F0586300F121BD /* ChatAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F80CCE229F0586300F121BD /* ChatAppUITests.swift */; };
 		8F80CCE529F0586300F121BD /* ChatAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F80CCE429F0586300F121BD /* ChatAppUITestsLaunchTests.swift */; };
+		8F80CCF229F17BDC00F121BD /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F80CCF129F17BDC00F121BD /* ChatViewModel.swift */; };
+		8F80CCF529F17F7200F121BD /* chatCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8F80CCF329F17F7200F121BD /* chatCoreData.xcdatamodeld */; };
+		8F80CCF729F5BF1C00F121BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F80CCF629F5BF1C00F121BD /* Assets.xcassets */; };
+		8F80CCFB29F751A300F121BD /* CustomClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F80CCFA29F751A300F121BD /* CustomClass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,8 +42,6 @@
 		8F80CCC129F0586100F121BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F80CCC329F0586100F121BD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8F80CCC529F0586100F121BD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		8F80CCC829F0586100F121BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		8F80CCCA29F0586300F121BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8F80CCCD29F0586300F121BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8F80CCCF29F0586300F121BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F80CCD429F0586300F121BD /* ChatAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChatAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,6 +49,10 @@
 		8F80CCDE29F0586300F121BD /* ChatAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChatAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F80CCE229F0586300F121BD /* ChatAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAppUITests.swift; sourceTree = "<group>"; };
 		8F80CCE429F0586300F121BD /* ChatAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		8F80CCF129F17BDC00F121BD /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		8F80CCF429F17F7200F121BD /* chatCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = chatCoreData.xcdatamodel; sourceTree = "<group>"; };
+		8F80CCF629F5BF1C00F121BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8F80CCFA29F751A300F121BD /* CustomClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomClass.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,10 +105,12 @@
 			children = (
 				8F80CCC129F0586100F121BD /* AppDelegate.swift */,
 				8F80CCC329F0586100F121BD /* SceneDelegate.swift */,
+				8F80CCF129F17BDC00F121BD /* ChatViewModel.swift */,
 				8F80CCC529F0586100F121BD /* ViewController.swift */,
-				8F80CCC729F0586100F121BD /* Main.storyboard */,
-				8F80CCCA29F0586300F121BD /* Assets.xcassets */,
+				8F80CCFA29F751A300F121BD /* CustomClass.swift */,
+				8F80CCF329F17F7200F121BD /* chatCoreData.xcdatamodeld */,
 				8F80CCCC29F0586300F121BD /* LaunchScreen.storyboard */,
+				8F80CCF629F5BF1C00F121BD /* Assets.xcassets */,
 				8F80CCCF29F0586300F121BD /* Info.plist */,
 			);
 			path = ChatApp;
@@ -231,9 +237,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F80CCF729F5BF1C00F121BD /* Assets.xcassets in Resources */,
 				8F80CCCE29F0586300F121BD /* LaunchScreen.storyboard in Resources */,
-				8F80CCCB29F0586300F121BD /* Assets.xcassets in Resources */,
-				8F80CCC929F0586100F121BD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,7 +265,10 @@
 			files = (
 				8F80CCC629F0586100F121BD /* ViewController.swift in Sources */,
 				8F80CCC229F0586100F121BD /* AppDelegate.swift in Sources */,
+				8F80CCF229F17BDC00F121BD /* ChatViewModel.swift in Sources */,
+				8F80CCFB29F751A300F121BD /* CustomClass.swift in Sources */,
 				8F80CCC429F0586100F121BD /* SceneDelegate.swift in Sources */,
+				8F80CCF529F17F7200F121BD /* chatCoreData.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,14 +305,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		8F80CCC729F0586100F121BD /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8F80CCC829F0586100F121BD /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		8F80CCCC29F0586300F121BD /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -441,7 +441,6 @@
 				INFOPLIST_FILE = ChatApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -468,7 +467,6 @@
 				INFOPLIST_FILE = ChatApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -596,6 +594,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8F80CCF329F17F7200F121BD /* chatCoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8F80CCF429F17F7200F121BD /* chatCoreData.xcdatamodel */,
+			);
+			currentVersion = 8F80CCF429F17F7200F121BD /* chatCoreData.xcdatamodel */;
+			path = chatCoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8F80CCB629F0586000F121BD /* Project object */;
 }
