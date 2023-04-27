@@ -17,7 +17,12 @@
 		8F80CCF229F17BDC00F121BD /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F80CCF129F17BDC00F121BD /* ChatViewModel.swift */; };
 		8F80CCF529F17F7200F121BD /* chatCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8F80CCF329F17F7200F121BD /* chatCoreData.xcdatamodeld */; };
 		8F80CCF729F5BF1C00F121BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F80CCF629F5BF1C00F121BD /* Assets.xcassets */; };
-		8F80CCFB29F751A300F121BD /* CustomClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F80CCFA29F751A300F121BD /* CustomClass.swift */; };
+		8F80CCFB29F751A300F121BD /* ScrollableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F80CCFA29F751A300F121BD /* ScrollableTextField.swift */; };
+		8FF84C0429F94CF300A815E8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF84C0329F94CF300A815E8 /* Constants.swift */; };
+		8FF84C0629F9C87400A815E8 /* Constraints+Extenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF84C0529F9C87400A815E8 /* Constraints+Extenstion.swift */; };
+		8FF84C2B29F9E1EC00A815E8 /* SenderChatBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF84C2A29F9E1EC00A815E8 /* SenderChatBubbleView.swift */; };
+		8FF84C2D29F9E21400A815E8 /* ReceiverChatBubbleVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF84C2C29F9E21400A815E8 /* ReceiverChatBubbleVIew.swift */; };
+		8FF84C2F29FA844500A815E8 /* TextFieldContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF84C2E29FA844500A815E8 /* TextFieldContainerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,7 +57,12 @@
 		8F80CCF129F17BDC00F121BD /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		8F80CCF429F17F7200F121BD /* chatCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = chatCoreData.xcdatamodel; sourceTree = "<group>"; };
 		8F80CCF629F5BF1C00F121BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8F80CCFA29F751A300F121BD /* CustomClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomClass.swift; sourceTree = "<group>"; };
+		8F80CCFA29F751A300F121BD /* ScrollableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableTextField.swift; sourceTree = "<group>"; };
+		8FF84C0329F94CF300A815E8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		8FF84C0529F9C87400A815E8 /* Constraints+Extenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constraints+Extenstion.swift"; sourceTree = "<group>"; };
+		8FF84C2A29F9E1EC00A815E8 /* SenderChatBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderChatBubbleView.swift; sourceTree = "<group>"; };
+		8FF84C2C29F9E21400A815E8 /* ReceiverChatBubbleVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiverChatBubbleVIew.swift; sourceTree = "<group>"; };
+		8FF84C2E29FA844500A815E8 /* TextFieldContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldContainerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,9 +115,10 @@
 			children = (
 				8F80CCC129F0586100F121BD /* AppDelegate.swift */,
 				8F80CCC329F0586100F121BD /* SceneDelegate.swift */,
-				8F80CCF129F17BDC00F121BD /* ChatViewModel.swift */,
-				8F80CCC529F0586100F121BD /* ViewController.swift */,
-				8F80CCFA29F751A300F121BD /* CustomClass.swift */,
+				8FF84BFF29F94C3000A815E8 /* View */,
+				8FF84C0029F94C3D00A815E8 /* Model */,
+				8FF84C0129F94C5F00A815E8 /* Extension+UI */,
+				8FF84C0229F94CA700A815E8 /* Constants */,
 				8F80CCF329F17F7200F121BD /* chatCoreData.xcdatamodeld */,
 				8F80CCCC29F0586300F121BD /* LaunchScreen.storyboard */,
 				8F80CCF629F5BF1C00F121BD /* Assets.xcassets */,
@@ -131,6 +142,42 @@
 				8F80CCE429F0586300F121BD /* ChatAppUITestsLaunchTests.swift */,
 			);
 			path = ChatAppUITests;
+			sourceTree = "<group>";
+		};
+		8FF84BFF29F94C3000A815E8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8F80CCC529F0586100F121BD /* ViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8FF84C0029F94C3D00A815E8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8F80CCF129F17BDC00F121BD /* ChatViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8FF84C0129F94C5F00A815E8 /* Extension+UI */ = {
+			isa = PBXGroup;
+			children = (
+				8F80CCFA29F751A300F121BD /* ScrollableTextField.swift */,
+				8FF84C0529F9C87400A815E8 /* Constraints+Extenstion.swift */,
+				8FF84C2A29F9E1EC00A815E8 /* SenderChatBubbleView.swift */,
+				8FF84C2C29F9E21400A815E8 /* ReceiverChatBubbleVIew.swift */,
+				8FF84C2E29FA844500A815E8 /* TextFieldContainerView.swift */,
+			);
+			path = "Extension+UI";
+			sourceTree = "<group>";
+		};
+		8FF84C0229F94CA700A815E8 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				8FF84C0329F94CF300A815E8 /* Constants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,9 +311,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F80CCC629F0586100F121BD /* ViewController.swift in Sources */,
+				8FF84C2B29F9E1EC00A815E8 /* SenderChatBubbleView.swift in Sources */,
 				8F80CCC229F0586100F121BD /* AppDelegate.swift in Sources */,
 				8F80CCF229F17BDC00F121BD /* ChatViewModel.swift in Sources */,
-				8F80CCFB29F751A300F121BD /* CustomClass.swift in Sources */,
+				8FF84C0629F9C87400A815E8 /* Constraints+Extenstion.swift in Sources */,
+				8F80CCFB29F751A300F121BD /* ScrollableTextField.swift in Sources */,
+				8FF84C0429F94CF300A815E8 /* Constants.swift in Sources */,
+				8FF84C2D29F9E21400A815E8 /* ReceiverChatBubbleVIew.swift in Sources */,
+				8FF84C2F29FA844500A815E8 /* TextFieldContainerView.swift in Sources */,
 				8F80CCC429F0586100F121BD /* SceneDelegate.swift in Sources */,
 				8F80CCF529F17F7200F121BD /* chatCoreData.xcdatamodeld in Sources */,
 			);
