@@ -7,51 +7,55 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
     
     // MARK: Screen Split View
-    private let screenSplit: UIView = {
+    private let dividerView: UIView = {
         let view = UIView()
-        view.backgroundColor = Constants.Colors.yellowViewColor
+        view.backgroundColor = .yellowViewColor
         view.layer.masksToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
        
         return view
     }()
     
-    // MARK: First Stack View
+    // MARK: First Text Field View
     private let firstTextFieldContainer: TextFieldContainerView = {
         let container = TextFieldContainerView()
         container.translatesAutoresizingMaskIntoConstraints = false
-        
+        container.textField.font = .systemFont(ofSize: 14)
+
         return container
     }()
     
-    // MARK: Second Stack View
+    // MARK: Second Text Field View
     private let secondTextFieldContainer: TextFieldContainerView = {
         let container = TextFieldContainerView()
         container.translatesAutoresizingMaskIntoConstraints = false
-        
+        container.textField.font = .systemFont(ofSize: 14)
+
         return container
     }()
     
     // MARK: First Chat View
+    //Will add Sender and Receiver Bubble on the cells when building Logic
     private let firstChatView: UITableView = {
-        setUpChatView()
-    }() ///Will add Sender and Receiver Bubble on the cells when building Logic
+        makeChatVIew()
+    }()
     
     // MARK: Second Chat View
+    //Will add Sender and Receiver Bubble on the cells when building Logic
     private let secondChatView: UITableView = {
-        setUpChatView()
-    }() ///Will add Sender and Receiver Bubble on the cells when building Logic
+        makeChatVIew()
+    }()
     
     // MARK: Toggle Button
-    private let toggleMode: UIButton = {
-        let theSwtich = UIButton()
-        theSwtich.setImage(Constants.Images.lightModeImage, for: .normal)
-        theSwtich.translatesAutoresizingMaskIntoConstraints = false
+    private let switcherButton: UIButton = {
+        let swtich = UIButton()
+        swtich.setImage(UIImageView.lightModeImage, for: .normal)
+        swtich.translatesAutoresizingMaskIntoConstraints = false
         
-        return theSwtich
+        return swtich
     }()
     
     // MARK: ViewDidLoad
@@ -67,39 +71,39 @@ class ViewController: UIViewController {
     private func setUpConstraints() {
         NSLayoutConstraint.activate([
             // MARK: Screen Split Constraints
-            screenSplit.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            screenSplit.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            screenSplit.widthAnchor.constraint(equalTo: view.widthAnchor),
-            screenSplit.heightAnchor.constraint(equalToConstant: 6),
+            dividerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            dividerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            dividerView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            dividerView.heightAnchor.constraint(equalToConstant: 6),
             
             // MARK: Switch Constraints
-            toggleMode.trailingAnchor.constraint(equalTo: view.trailingAnchor,
+            switcherButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,
                                                  constant: -(view.frame.width * 0.032)),
-            toggleMode.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
+            switcherButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
                                             constant: 8),
-            toggleMode.widthAnchor.constraint(equalToConstant: 54),
-            toggleMode.heightAnchor.constraint(equalToConstant: 27),
+            switcherButton.widthAnchor.constraint(equalToConstant: 54),
+            switcherButton.heightAnchor.constraint(equalToConstant: 27),
             
             // MARK: First Text Field Container Constraints
             firstTextFieldContainer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            firstTextFieldContainer.widthAnchor.constraint(equalTo: view.widthAnchor,
+            firstTextFieldContainer.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor,
                                                            constant: -32),
-            firstTextFieldContainer.bottomAnchor.constraint(equalTo: screenSplit.topAnchor,
+            firstTextFieldContainer.bottomAnchor.constraint(equalTo: dividerView.topAnchor,
                                                             constant: -30),
-            firstTextFieldContainer.heightAnchor.constraint(greaterThanOrEqualToConstant: 50),
+            firstTextFieldContainer.heightAnchor.constraint(greaterThanOrEqualToConstant: 48),
 
             
             // MARK: Second Text Field Constraints
             secondTextFieldContainer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            secondTextFieldContainer.widthAnchor.constraint(equalTo: view.widthAnchor,
+            secondTextFieldContainer.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor,
                                                             constant: -32),
             secondTextFieldContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor,
                                                              constant: -30),
-            secondTextFieldContainer.heightAnchor.constraint(greaterThanOrEqualToConstant: 50),
+            secondTextFieldContainer.heightAnchor.constraint(greaterThanOrEqualToConstant: 48),
             
             
             // MARK: First Chat View Constraints
-            firstChatView.topAnchor.constraint(equalTo: toggleMode.bottomAnchor),
+            firstChatView.topAnchor.constraint(equalTo: switcherButton.bottomAnchor),
             firstChatView.trailingAnchor.constraint(equalTo: view.trailingAnchor,
                                                     constant:  -16),
             firstChatView.bottomAnchor.constraint(equalTo: firstTextFieldContainer.topAnchor,
@@ -108,7 +112,7 @@ class ViewController: UIViewController {
                                                    constant: 16),
             
             // MARK: Second Chat View Constraints
-            secondChatView.topAnchor.constraint(equalTo: screenSplit.bottomAnchor,
+            secondChatView.topAnchor.constraint(equalTo: dividerView.bottomAnchor,
                                                 constant: 16),
             secondChatView.trailingAnchor.constraint(equalTo: view.trailingAnchor,
                                                      constant:  -16),
@@ -121,13 +125,13 @@ class ViewController: UIViewController {
     
     // MARK: Adding SubViews
     private func addSubViews() {
-        [screenSplit, toggleMode, firstChatView, secondChatView, firstTextFieldContainer, secondTextFieldContainer].forEach { [weak self] theView in
+        [dividerView, switcherButton, firstChatView, secondChatView, firstTextFieldContainer, secondTextFieldContainer].forEach { [weak self] theView in
             self?.view.addSubview(theView)
         }
     }
     
     // MARK: Chat View Set Up Function
-    private static func setUpChatView() -> UITableView{
+    private static func makeChatVIew() -> UITableView{
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -140,7 +144,7 @@ class ViewController: UIViewController {
             tableView.delegate = self
             tableView.dataSource = self
         }
-        toggleMode.addTarget(self, action: #selector(switchChanged(_:)), for: .touchUpInside)
+        switcherButton.addTarget(self, action: #selector(switchChanged(_:)), for: .touchUpInside)
     }
 }
 
@@ -174,38 +178,45 @@ extension ViewController {
     @objc private func switchChanged(_ sender: UIButton) {
         sender.isEnabled = false
         
-        UIView.transition(with: sender, duration: 0.3, options: [.curveEaseOut, .transitionCrossDissolve], animations: { [weak self] in
-            if sender.currentImage == Constants.Images.lightModeImage {
-                sender.setImage(Constants.Images.darkModeImage, for: .normal)
-                self?.view.backgroundColor = Constants.Colors.darkMode
-                self?.screenSplit.backgroundColor = Constants.Colors.darkModeYellowViewColor
-                [self?.firstTextFieldContainer, self?.secondTextFieldContainer].forEach { view in
-                    [view, view?.textField].forEach { theView in
-                        theView?.backgroundColor = Constants.Colors.darkMode
-                    }
-                    view?.textField.textColor = Constants.Colors.darkModeTextColor
-                }
-                [self?.firstChatView, self?.secondChatView].forEach { view in
-                    view?.backgroundColor = Constants.Colors.darkMode
-                }
-                
+        UIView.transition(with: sender, duration: 0.3, options: [.curveEaseOut, .transitionCrossDissolve], animations: {
+    
+            if sender.currentImage == UIImageView.darkModeImage {
+                self.setUpViewsForDarkMode(sender)
             } else {
-                sender.setImage(Constants.Images.lightModeImage, for: .normal)
-                self?.view.backgroundColor = .systemBackground
-                self?.screenSplit.backgroundColor = Constants.Colors.yellowViewColor
-                [self?.firstTextFieldContainer, self?.secondTextFieldContainer].forEach { view in
-                    [view, view?.textField].forEach { theView in
-                        theView?.backgroundColor = .systemBackground
-                    }
-                    view?.textField.textColor = Constants.Colors.lightModeTextColor
-                }
-                [self?.firstChatView, self?.secondChatView].forEach { view in
-                    view?.backgroundColor = .systemBackground
-                }
-                
+                self.setUpViewsForLightMode(sender)
             }
         }, completion: { _ in
             sender.isEnabled = true
         })
+    }
+    
+    private func setUpViewsForDarkMode(_ button: UIButton) {
+        button.setImage(UIImageView.darkModeImage, for: .normal)
+        view.backgroundColor = .backgroundDarkModeColor
+        dividerView.backgroundColor = .darkModeYellowViewColor
+        [firstTextFieldContainer, secondTextFieldContainer].forEach { view in
+            [view, view.textField].forEach { theView in
+                theView?.backgroundColor = .backgroundDarkModeColor
+            }
+            view.textField.textColor = .darkModeTextColor
+        }
+        [firstChatView, secondChatView].forEach { view in
+            view?.backgroundColor = .backgroundDarkModeColor
+        }
+    }
+    
+    private func setUpViewsForLightMode(_ button: UIButton) {
+        button.setImage(UIImageView.lightModeImage, for: .normal)
+        view.backgroundColor = .systemBackground
+        dividerView.backgroundColor = .yellowViewColor
+        [firstTextFieldContainer, secondTextFieldContainer].forEach { view in
+            [view, view.textField].forEach { theView in
+                theView?.backgroundColor = .systemBackground
+            }
+            view.textField.textColor = .lightModeTextColor
+        }
+        [firstChatView,secondChatView].forEach { view in
+            view?.backgroundColor = .systemBackground
+        }
     }
 }
