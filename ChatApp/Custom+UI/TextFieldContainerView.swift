@@ -54,6 +54,7 @@ final class TextFieldContainerView: UIView {
     
     private func setUpConstraints() {
         NSLayoutConstraint.activate([
+            // MARK: Set Text Field Constraints
             textField.leadingAnchor.constraint(equalTo: leadingAnchor,
                                                constant: 22),
             textField.topAnchor.constraint(equalTo: topAnchor,
@@ -61,7 +62,8 @@ final class TextFieldContainerView: UIView {
             textField.trailingAnchor.constraint(equalTo: sendButton.leadingAnchor),
             textField.bottomAnchor.constraint(equalTo: bottomAnchor,
                                               constant: -12),
-
+            
+            // MARK: Set Button Constraints
             sendButton.trailingAnchor.constraint(equalTo: trailingAnchor,
                                                  constant: -10),
             sendButton.bottomAnchor.constraint(equalTo: bottomAnchor,
