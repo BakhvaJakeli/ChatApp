@@ -7,3 +7,4 @@
 
 import UIKit
 
+// Will add View model when building Logic

@@ -19,7 +19,7 @@ final class TextFieldContainerView: UIView {
         backgroundColor = .systemBackground
         makeButton()
         addSubViews()
-        setUpUI()
+        configUI()
         setUpConstraints()
 
     }
@@ -28,16 +28,18 @@ final class TextFieldContainerView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Button Configuration
     private func makeButton() {
         var configuration = UIButton.Configuration.filled()
         configuration.baseBackgroundColor = .sendButtonCollor
-        configuration.image = UIImageView.sendButtomImmage
+        configuration.image = .sendButtomImmage
         configuration.cornerStyle = .capsule
         
         sendButton = UIButton(configuration: configuration,
                                   primaryAction: nil)
     }
     
+    // MARK: Adding Subviews
     private func addSubViews() {
         addSubview(textField)
         addSubview(sendButton)
@@ -46,12 +48,14 @@ final class TextFieldContainerView: UIView {
         })
     }
     
-    private func setUpUI() {
+    // MARK: Configuring UI
+    private func configUI() {
         layer.cornerRadius = 24
         layer.borderWidth = 1
         layer.borderColor = UIColor.borderColor.cgColor
     }
     
+    // MARK: Setting Up Constraints
     private func setUpConstraints() {
         NSLayoutConstraint.activate([
             // MARK: Set Text Field Constraints
