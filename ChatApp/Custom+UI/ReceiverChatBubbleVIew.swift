@@ -35,6 +35,5 @@ final class ReceiverChatBubbleVIew: UIView {
                                                        height: 10))
         UIColor.gray.setFill()
         secondBubble.fill()
-
     }
 }

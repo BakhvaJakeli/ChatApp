@@ -16,6 +16,7 @@ final class SwitcherButton: UIButton {
     
     weak var delegate: SwitcherButtonDelegate?
     
+    //MARK: Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)

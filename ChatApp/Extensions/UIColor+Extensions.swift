@@ -8,7 +8,6 @@
 import UIKit
 
 extension UIColor {
-    
     static let backgroundDarkModeColor = UIColor(red: 0.086,
                                   green: 0,
                                   blue: 0.224,

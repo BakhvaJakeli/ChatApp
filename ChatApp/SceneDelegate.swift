@@ -27,7 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             self.window = UIWindow(windowScene: windowScene)
             //self.window =  UIWindow(frame: UIScreen.main.bounds)
             
-            let chatHomeViewControler = ViewController()
+            let chatHomeViewControler = ChatViewController()
 
             self.window?.rootViewController = chatHomeViewControler
             self.window?.makeKeyAndVisible()

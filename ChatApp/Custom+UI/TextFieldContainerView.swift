@@ -9,15 +9,27 @@ import UIKit
 
 
 final class TextFieldContainerView: UIView {
-
+    
+    // MARK: Outlets
     let textField = ScrollableTextField()
-    var sendButton = UIButton(type: .system)
-
+    
+    private let sendButton: UIButton = {
+        let button = UIButton(type: .system)
+        
+        var configuration = UIButton.Configuration.filled()
+        configuration.baseBackgroundColor = .sendButtonCollor
+        configuration.image = .sendButtomImmage
+        configuration.cornerStyle = .capsule
+        button.configuration = configuration
+        
+        return button
+    }()
+    
+    // MARK: Init
     override init(frame: CGRect) {
         super.init(frame: frame)
 
         backgroundColor = .systemBackground
-        makeButton()
         addSubViews()
         configUI()
         setUpConstraints()
@@ -27,18 +39,7 @@ final class TextFieldContainerView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    // MARK: Button Configuration
-    private func makeButton() {
-        var configuration = UIButton.Configuration.filled()
-        configuration.baseBackgroundColor = .sendButtonCollor
-        configuration.image = .sendButtomImmage
-        configuration.cornerStyle = .capsule
-        
-        sendButton = UIButton(configuration: configuration,
-                                  primaryAction: nil)
-    }
-    
+
     // MARK: Adding Subviews
     private func addSubViews() {
         addSubview(textField)
@@ -50,8 +51,8 @@ final class TextFieldContainerView: UIView {
     
     // MARK: Configuring UI
     private func configUI() {
-        layer.cornerRadius = 24
-        layer.borderWidth = 1
+        layer.cornerRadius = TextFieldContainerViewConstants.containerCornerRadius
+        layer.borderWidth = TextFieldContainerViewConstants.containerBorderWidth
         layer.borderColor = UIColor.borderColor.cgColor
     }
     
@@ -60,20 +61,20 @@ final class TextFieldContainerView: UIView {
         NSLayoutConstraint.activate([
             // MARK: Set Text Field Constraints
             textField.leadingAnchor.constraint(equalTo: leadingAnchor,
-                                               constant: 22),
+                                               constant: TextFieldContainerViewConstants.textFieldLeadingPadding),
             textField.topAnchor.constraint(equalTo: topAnchor,
-                                           constant: 12),
-            textField.trailingAnchor.constraint(equalTo: sendButton.leadingAnchor),
+                                           constant: TextFieldContainerViewConstants.textFieldBottomTopAndTrailingPadding),
+            textField.trailingAnchor.constraint(equalTo: sendButton.leadingAnchor, constant: -TextFieldContainerViewConstants.textFieldBottomTopAndTrailingPadding),
             textField.bottomAnchor.constraint(equalTo: bottomAnchor,
-                                              constant: -12),
+                                              constant: -TextFieldContainerViewConstants.textFieldBottomTopAndTrailingPadding),
             
             // MARK: Set Button Constraints
             sendButton.trailingAnchor.constraint(equalTo: trailingAnchor,
-                                                 constant: -10),
+                                                 constant: TextFieldContainerViewConstants.sendButtonTrailingPadding),
             sendButton.bottomAnchor.constraint(equalTo: bottomAnchor,
-                                               constant: -12),
-            sendButton.widthAnchor.constraint(equalToConstant: 30),
-            sendButton.heightAnchor.constraint(equalToConstant: 30)
+                                               constant: TextFieldContainerViewConstants.sendButtonBottomPadding),
+            sendButton.widthAnchor.constraint(equalToConstant: TextFieldContainerViewConstants.buttonWidthAndHeight),
+            sendButton.heightAnchor.constraint(equalToConstant: TextFieldContainerViewConstants.buttonWidthAndHeight)
         ])
     }
 }

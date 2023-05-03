@@ -7,9 +7,9 @@
 
 import UIKit
 
-final class ViewController: UIViewController {
+final class ChatViewController: UIViewController {
     
-    // MARK: Screen Split View
+    // MARK: Outlets
     private let dividerView: UIView = {
         let view = UIView()
         view.backgroundColor = .yellowViewColor
@@ -19,13 +19,10 @@ final class ViewController: UIViewController {
         return view
     }()
         
-    // MARK: Switcher Button
     private let switcherButton = SwitcherButton()
     
-    // MARK: First Chat View
     private let firstChatView = ChatView()
     
-    // MARK: Second Chat View
     private let secondChatView = ChatView()
     
     // MARK: ViewDidLoad
@@ -44,21 +41,21 @@ final class ViewController: UIViewController {
             dividerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             dividerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             dividerView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            dividerView.heightAnchor.constraint(equalToConstant: 6),
+            dividerView.heightAnchor.constraint(equalToConstant: ChatViewControllerConstants.dividerViewHeight),
             
             // MARK: Switch Constraints
             switcherButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,
                                                  constant: -(view.frame.width * 0.032)),
             switcherButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
-                                            constant: 8),
-            switcherButton.widthAnchor.constraint(equalToConstant: 54),
-            switcherButton.heightAnchor.constraint(equalToConstant: 27),
+                                                constant: ChatViewControllerConstants.switcherTopPadding),
+            switcherButton.widthAnchor.constraint(equalToConstant: ChatViewControllerConstants.switcherWidth),
+            switcherButton.heightAnchor.constraint(equalToConstant: ChatViewControllerConstants.switcherHeight),
             
             // MARK: First Chat View Constraints
             firstChatView.topAnchor.constraint(equalTo: switcherButton.bottomAnchor),
             firstChatView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             firstChatView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            firstChatView.bottomAnchor.constraint(equalTo: dividerView.topAnchor, constant: -30),
+            firstChatView.bottomAnchor.constraint(equalTo: dividerView.topAnchor, constant: ChatViewControllerConstants.firstChatViewBottomPadding),
             
             //MARK: Second Chat View Constraints
             secondChatView.topAnchor.constraint(equalTo: dividerView.bottomAnchor),
@@ -86,7 +83,7 @@ final class ViewController: UIViewController {
 }
 
 // MARK: Switcher Button Delegate
-extension ViewController: SwitcherButtonDelegate {
+extension ChatViewController: SwitcherButtonDelegate {
     
     func SwitcherIsPressed(_ button: SwitcherButton) {
         UIView.animate(withDuration: 0.5, animations: {
