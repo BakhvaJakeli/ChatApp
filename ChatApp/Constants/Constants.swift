@@ -8,7 +8,7 @@
 import UIKit
 
 // MARK: View Controller Extension
-struct ChatViewControllerConstants {
+enum ChatViewControllerConstants {
     static let switcherWidth: CGFloat = 54
     static let switcherHeight: CGFloat = 27
     static let switcherTopPadding: CGFloat = 8
@@ -17,7 +17,7 @@ struct ChatViewControllerConstants {
 }
 
 // MARK: TextField Container View Constants
-struct TextFieldContainerViewConstants {
+enum TextFieldContainerViewConstants {
     static let containerCornerRadius: CGFloat = 24
     static let containerBorderWidth: CGFloat = 1
     static let textFieldLeadingPadding: CGFloat = 22
@@ -28,8 +28,22 @@ struct TextFieldContainerViewConstants {
 }
 
 // MARK: Chat View Constants
-struct ChatViewConstants {
-    static let textFieldFont: CGFloat = 0
+enum ChatViewConstants {
+    static let textFieldFont: CGFloat = 14
     static let containterWitdthConstant: CGFloat = -32
     static let containterHeightConstant: CGFloat = 48
+}
+
+// MARK: Scrollable Text Field Constants
+enum ScrollableTextFieldConstants {
+    static let leadingPadding: CGFloat = 3
+    static let topPadding: CGFloat = 3
+    static var placeholder = "დაწერე შეტყობინება..."
+    static var maxNumberOfLines = 5
+}
+
+// MARK: Switch Button State
+enum SwitcherState {
+    case dark
+    case light
 }

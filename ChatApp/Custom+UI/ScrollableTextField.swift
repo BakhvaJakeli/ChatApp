@@ -9,9 +9,6 @@ import UIKit
 
 final class ScrollableTextField: UITextView, UITextViewDelegate {
     
-    var placeholder = "დაწერე შეტყობინება..."
-    var maxNumberOfLines = 5
-    
     // MARK: Text View Line Height
     var lineHeight: CGFloat {
         font?.lineHeight ?? 0
@@ -35,7 +32,7 @@ final class ScrollableTextField: UITextView, UITextViewDelegate {
     // MARK: Content Size Height
     override var intrinsicContentSize: CGSize {
         var size = super.intrinsicContentSize
-        let maxHeight = CGFloat(maxNumberOfLines) * lineHeight + textContainerInset.top + textContainerInset.bottom
+        let maxHeight = CGFloat(ScrollableTextFieldConstants.maxNumberOfLines) * lineHeight + textContainerInset.top + textContainerInset.bottom
         if size.height > maxHeight {
             size.height = maxHeight
             isScrollEnabled = true
@@ -46,7 +43,7 @@ final class ScrollableTextField: UITextView, UITextViewDelegate {
     }
     
     // MARK: Place Holder Label
-    private let placeholderLabel = UILabel()
+    private lazy var placeholderLabel = UILabel()
     
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
@@ -71,7 +68,7 @@ final class ScrollableTextField: UITextView, UITextViewDelegate {
         delegate = self
         autocorrectionType = .no
         placeholderLabel.translatesAutoresizingMaskIntoConstraints = false
-        placeholderLabel.text = placeholder
+        placeholderLabel.text = ScrollableTextFieldConstants.placeholder
         placeholderLabel.textColor = placeholderColor
         placeholderLabel.font = font
         placeholderLabel.isHidden = !text.isEmpty
@@ -84,8 +81,8 @@ final class ScrollableTextField: UITextView, UITextViewDelegate {
     
     private func setUpConstraints() {
         NSLayoutConstraint.activate([
-            placeholderLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 3),
-            placeholderLabel.topAnchor.constraint(equalTo: topAnchor, constant: 4)
+            placeholderLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: ScrollableTextFieldConstants.leadingPadding),
+            placeholderLabel.topAnchor.constraint(equalTo: topAnchor, constant: ScrollableTextFieldConstants.topPadding)
         ])
     }
 }

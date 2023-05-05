@@ -9,10 +9,12 @@ import UIKit
 
 // MARK: Switcher Button Delegate
 protocol SwitcherButtonDelegate: AnyObject {
-    func SwitcherIsPressed(_ button: SwitcherButton)
+    func SwitcherIsPressed()
 }
 
 final class SwitcherButton: UIButton {
+    
+    var switcherState: SwitcherState = .light
     
     weak var delegate: SwitcherButtonDelegate?
     
@@ -29,19 +31,24 @@ final class SwitcherButton: UIButton {
     
     // MARK: Button Configuration
     private func configureButton() {
-        setImage(.lightModeImage, for: .normal)
+        setImage(MessageAppImages.lightModeImage, for: .normal)
         translatesAutoresizingMaskIntoConstraints = false
     }
     
     // MARK: Button Action
     @objc private func buttonPressed() {
         isEnabled = false
-        delegate?.SwitcherIsPressed(self)
-        UIView.animate(withDuration: 0.5, animations: {
-            if self.currentImage == .lightModeImage {
-                self.setImage(.darkModeImage, for: .normal)
-            } else {
-                self.setImage(.lightModeImage, for: .normal)
+        delegate?.SwitcherIsPressed()
+        UIView.animate(withDuration: 0.5,
+                       animations: {
+            switch self.switcherState {
+            case .light :
+                self.switcherState = .dark
+                self.setImage(MessageAppImages.darkModeImage, for: .normal)
+                
+            case .dark:
+                self.switcherState = .light
+                self.setImage(MessageAppImages.lightModeImage, for: .normal)
             }
         }, completion: {_ in
             self.isEnabled = true

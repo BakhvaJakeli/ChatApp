@@ -22,8 +22,8 @@
 		8FF84C2B29F9E1EC00A815E8 /* SenderChatBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF84C2A29F9E1EC00A815E8 /* SenderChatBubbleView.swift */; };
 		8FF84C2D29F9E21400A815E8 /* ReceiverChatBubbleVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF84C2C29F9E21400A815E8 /* ReceiverChatBubbleVIew.swift */; };
 		8FF84C2F29FA844500A815E8 /* TextFieldContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF84C2E29FA844500A815E8 /* TextFieldContainerView.swift */; };
-		8FF84C3129FBE34D00A815E8 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF84C3029FBE34D00A815E8 /* UIColor+Extensions.swift */; };
-		8FF84C3429FBF8FA00A815E8 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF84C3329FBF8FA00A815E8 /* UIImageView+Extensions.swift */; };
+		8FF84C3129FBE34D00A815E8 /* MessageAppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF84C3029FBE34D00A815E8 /* MessageAppColors.swift */; };
+		8FF84C3429FBF8FA00A815E8 /* MessageAppImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF84C3329FBF8FA00A815E8 /* MessageAppImages.swift */; };
 		8FF84C3829FC55CB00A815E8 /* SwitcherButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF84C3729FC55CB00A815E8 /* SwitcherButton.swift */; };
 		8FF84C3A29FC5F9D00A815E8 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF84C3929FC5F9D00A815E8 /* ChatView.swift */; };
 		8FF84C682A0157DD00A815E8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF84C672A0157DD00A815E8 /* Constants.swift */; };
@@ -66,8 +66,8 @@
 		8FF84C2A29F9E1EC00A815E8 /* SenderChatBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderChatBubbleView.swift; sourceTree = "<group>"; };
 		8FF84C2C29F9E21400A815E8 /* ReceiverChatBubbleVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiverChatBubbleVIew.swift; sourceTree = "<group>"; };
 		8FF84C2E29FA844500A815E8 /* TextFieldContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldContainerView.swift; sourceTree = "<group>"; };
-		8FF84C3029FBE34D00A815E8 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
-		8FF84C3329FBF8FA00A815E8 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
+		8FF84C3029FBE34D00A815E8 /* MessageAppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageAppColors.swift; sourceTree = "<group>"; };
+		8FF84C3329FBF8FA00A815E8 /* MessageAppImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageAppImages.swift; sourceTree = "<group>"; };
 		8FF84C3729FC55CB00A815E8 /* SwitcherButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitcherButton.swift; sourceTree = "<group>"; };
 		8FF84C3929FC5F9D00A815E8 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		8FF84C672A0157DD00A815E8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -172,9 +172,7 @@
 		8FF84C0129F94C5F00A815E8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				8FF84C3029FBE34D00A815E8 /* UIColor+Extensions.swift */,
 				8FF84C0529F9C87400A815E8 /* Constraints+Extenstion.swift */,
-				8FF84C3329FBF8FA00A815E8 /* UIImageView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -182,6 +180,8 @@
 		8FF84C0229F94CA700A815E8 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				8FF84C3329FBF8FA00A815E8 /* MessageAppImages.swift */,
+				8FF84C3029FBE34D00A815E8 /* MessageAppColors.swift */,
 				8FF84C672A0157DD00A815E8 /* Constants.swift */,
 			);
 			path = Constants;
@@ -330,7 +330,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8FF84C3429FBF8FA00A815E8 /* UIImageView+Extensions.swift in Sources */,
+				8FF84C3429FBF8FA00A815E8 /* MessageAppImages.swift in Sources */,
 				8FF84C3829FC55CB00A815E8 /* SwitcherButton.swift in Sources */,
 				8F80CCC629F0586100F121BD /* ChatViewController.swift in Sources */,
 				8FF84C2B29F9E1EC00A815E8 /* SenderChatBubbleView.swift in Sources */,
@@ -340,7 +340,7 @@
 				8FF84C682A0157DD00A815E8 /* Constants.swift in Sources */,
 				8FF84C0629F9C87400A815E8 /* Constraints+Extenstion.swift in Sources */,
 				8F80CCFB29F751A300F121BD /* ScrollableTextField.swift in Sources */,
-				8FF84C3129FBE34D00A815E8 /* UIColor+Extensions.swift in Sources */,
+				8FF84C3129FBE34D00A815E8 /* MessageAppColors.swift in Sources */,
 				8FF84C2D29F9E21400A815E8 /* ReceiverChatBubbleVIew.swift in Sources */,
 				8FF84C2F29FA844500A815E8 /* TextFieldContainerView.swift in Sources */,
 				8F80CCC429F0586100F121BD /* SceneDelegate.swift in Sources */,

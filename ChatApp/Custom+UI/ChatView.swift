@@ -9,19 +9,19 @@ import UIKit
 
 final class ChatView: UIView {
     
-    // MARK: Outlets
-    let TextFieldContainer: TextFieldContainerView = {
+    // MARK: Components
+    lazy var textFieldContainer: TextFieldContainerView = {
         let container = TextFieldContainerView()
         container.translatesAutoresizingMaskIntoConstraints = false
         container.textField.font = .systemFont(ofSize: ChatViewConstants.textFieldFont)
-
         return container
     }()
     
-    private let chatTableView: UITableView = {
+    private lazy var chatTableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .clear
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.dataSource = self
         
         return tableView
     }()
@@ -29,7 +29,6 @@ final class ChatView: UIView {
     // MARK: Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configUI()
         addSubviews()
         addConstraints()
     }
@@ -38,16 +37,10 @@ final class ChatView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: Setting up UI
-    private func configUI() {
-        chatTableView.delegate = self
-        chatTableView.dataSource = self
-    }
-    
     // MARK: Adding SubViews
     private func addSubviews() {
         addSubview(chatTableView)
-        addSubview(TextFieldContainer)
+        addSubview(textFieldContainer)
     }
     
     // MARK: Adding Constraints
@@ -62,23 +55,23 @@ final class ChatView: UIView {
             chatTableView.topAnchor.constraint(equalTo: topAnchor),
             chatTableView.trailingAnchor.constraint(equalTo: trailingAnchor),
             chatTableView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            chatTableView.bottomAnchor.constraint(equalTo: TextFieldContainer.topAnchor),
+            chatTableView.bottomAnchor.constraint(equalTo: textFieldContainer.topAnchor),
         ])
     }
     
     //MARK: Text Field Container Constraints
     private func textFieldContainerConstraints() {
         NSLayoutConstraint.activate([
-            TextFieldContainer.centerXAnchor.constraint(equalTo: centerXAnchor),
-            TextFieldContainer.bottomAnchor.constraint(equalTo: bottomAnchor),
-            TextFieldContainer.widthAnchor.constraint(equalTo: widthAnchor, constant: ChatViewConstants.containterWitdthConstant),
-            TextFieldContainer.heightAnchor.constraint(greaterThanOrEqualToConstant: ChatViewConstants.containterHeightConstant),
+            textFieldContainer.centerXAnchor.constraint(equalTo: centerXAnchor),
+            textFieldContainer.bottomAnchor.constraint(equalTo: bottomAnchor),
+            textFieldContainer.widthAnchor.constraint(equalTo: widthAnchor, constant: ChatViewConstants.containterWitdthConstant),
+            textFieldContainer.heightAnchor.constraint(greaterThanOrEqualToConstant: ChatViewConstants.containterHeightConstant),
         ])
     }
 }
 
 // MARK: Table View Functions
-extension ChatView: UITableViewDelegate, UITableViewDataSource {
+extension ChatView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         0
     }
