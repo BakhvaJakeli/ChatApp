@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: Switcher Button Delegate
 protocol SwitcherButtonDelegate: AnyObject {
-    func SwitcherIsPressed()
+    func switcherIsPressed(_ state: SwitcherState)
 }
 
 final class SwitcherButton: UIButton {
@@ -38,7 +38,7 @@ final class SwitcherButton: UIButton {
     // MARK: Button Action
     @objc private func buttonPressed() {
         isEnabled = false
-        delegate?.SwitcherIsPressed()
+        delegate?.switcherIsPressed(switcherState)
         UIView.animate(withDuration: 0.5,
                        animations: {
             switch self.switcherState {

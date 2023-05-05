@@ -130,12 +130,12 @@ final class ChatViewController: UIViewController {
 
 // MARK: Switcher Button Delegate
 extension ChatViewController: SwitcherButtonDelegate {
-    func SwitcherIsPressed() {
+    func switcherIsPressed(_ state: SwitcherState) {
         UIView.animate(withDuration: 0.5,
                        animations: {
-            if self.switcherButton.switcherState == .light {
+            if state == .light {
                 self.setUpViewsForDarkMode()
-            } else if self.switcherButton.switcherState == .dark {
+            } else if state == .dark {
                 self.setUpViewsForLightMode()
             }
         },completion: nil)
