@@ -17,12 +17,14 @@ final class ChatView: UIView {
         return container
     }()
     
-    private lazy var chatTableView: UITableView = {
+    lazy var chatTableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .clear
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.dataSource = self
-        
+//        tableView.separatorStyle = .none
+        tableView.register(SenderTableViewCell.self, forCellReuseIdentifier: SenderTableViewCell.identifier)
+        tableView.register(ReceiverTableViewCell.self, forCellReuseIdentifier: ReceiverTableViewCell.identifier)
+
         return tableView
     }()
     
@@ -55,7 +57,7 @@ final class ChatView: UIView {
             chatTableView.topAnchor.constraint(equalTo: topAnchor),
             chatTableView.trailingAnchor.constraint(equalTo: trailingAnchor),
             chatTableView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            chatTableView.bottomAnchor.constraint(equalTo: textFieldContainer.topAnchor),
+            chatTableView.bottomAnchor.constraint(equalTo: textFieldContainer.topAnchor)
         ])
     }
     
@@ -65,18 +67,24 @@ final class ChatView: UIView {
             textFieldContainer.centerXAnchor.constraint(equalTo: centerXAnchor),
             textFieldContainer.bottomAnchor.constraint(equalTo: bottomAnchor),
             textFieldContainer.widthAnchor.constraint(equalTo: widthAnchor, constant: ChatViewConstants.containterWitdthConstant),
-            textFieldContainer.heightAnchor.constraint(greaterThanOrEqualToConstant: ChatViewConstants.containterHeightConstant),
+            textFieldContainer.heightAnchor.constraint(greaterThanOrEqualToConstant: ChatViewConstants.containterHeightConstant)
         ])
     }
 }
 
-// MARK: Table View Functions
-extension ChatView: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        0
+// MARK: - Table View Functions
+extension ChatView {
+    public func configTableView(dataSource: UITableViewDataSource, delegate: UITableViewDelegate) {
+        chatTableView.dataSource = dataSource
+        chatTableView.delegate = delegate
     }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        UITableViewCell()
+}
+
+// MARK: - Chat View Constants
+private extension ChatView {
+    enum ChatViewConstants {
+        static let textFieldFont: CGFloat = 14
+        static let containterWitdthConstant: CGFloat = -32
+        static let containterHeightConstant: CGFloat = 48
     }
 }

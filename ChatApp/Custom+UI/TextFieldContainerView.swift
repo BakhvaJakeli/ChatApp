@@ -7,8 +7,13 @@
 
 import UIKit
 
+protocol sendButtonDelegate:AnyObject {
+    func sendMessage(_ textField: ScrollableTextField)
+}
 
 final class TextFieldContainerView: UIView {
+    
+    weak var delegate: sendButtonDelegate?
     
     // MARK: Outlets
     let textField = ScrollableTextField()
@@ -17,8 +22,8 @@ final class TextFieldContainerView: UIView {
         let button = UIButton(type: .system)
         
         var configuration = UIButton.Configuration.filled()
-        configuration.baseBackgroundColor = MessageAppColors.sendButtonCollor
-        configuration.image = MessageAppImages.sendButtomImmage
+        configuration.baseBackgroundColor = ChatAppColors.sendButtonCollor
+        configuration.image = ChatAppImages.sendButtomImmage
         configuration.cornerStyle = .capsule
         button.configuration = configuration
         
@@ -51,10 +56,11 @@ final class TextFieldContainerView: UIView {
     private func configUI() {
         layer.cornerRadius = TextFieldContainerViewConstants.containerCornerRadius
         layer.borderWidth = TextFieldContainerViewConstants.containerBorderWidth
-        layer.borderColor = MessageAppColors.borderColor.cgColor
+        layer.borderColor = ChatAppColors.borderColor.cgColor
         [textField,sendButton].forEach( { view in
             view.translatesAutoresizingMaskIntoConstraints = false
         })
+        sendButton.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
     }
     
     // MARK: Setting Up Constraints
@@ -87,5 +93,24 @@ final class TextFieldContainerView: UIView {
             sendButton.heightAnchor.constraint(equalToConstant: TextFieldContainerViewConstants.buttonWidthAndHeight)
         ])
     }
+    
+    // MARK: Button Action
+    @objc func sendMessage() {
+        guard let text = textField.text else {return}
+        if text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {return}
+        delegate?.sendMessage(textField)
+    }
 }
 
+// MARK: - Text Field Containter Constatns
+private extension TextFieldContainerView {
+    enum TextFieldContainerViewConstants {
+        static let containerCornerRadius: CGFloat = 24
+        static let containerBorderWidth: CGFloat = 1
+        static let textFieldLeadingPadding: CGFloat = 22
+        static let textFieldBottomTopAndTrailingPadding: CGFloat = 12
+        static let buttonWidthAndHeight: CGFloat = 30
+        static let sendButtonTrailingPadding: CGFloat = -10
+        static let sendButtonBottomPadding: CGFloat = -12
+    }
+}

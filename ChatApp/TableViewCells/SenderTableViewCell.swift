@@ -1,0 +1,45 @@
+//
+//  SenderTableViewCell.swift
+//  ChatApp
+//
+//  Created by bakhva  on 11.05.23.
+//
+
+import UIKit
+
+class SenderTableViewCell: UITableViewCell {
+    
+    static let identifier = "SenderTableViewCell"
+    
+    lazy var bubble = SenderChatBubbleView()
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        configUI()
+        constraints()
+        backgroundColor = .clear
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func configUI() {
+        bubble.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(bubble)
+    }
+    
+    private func constraints() {
+        NSLayoutConstraint.activate([
+            bubble.topAnchor.constraint(equalTo: contentView.topAnchor),
+            bubble.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            bubble.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            bubble.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+        ])
+    }
+    
+    func configCell(with message: Message) {
+        bubble.messageLabel.text = message.text
+        bubble.dateLabel.text = message.sendDate
+    }
+}

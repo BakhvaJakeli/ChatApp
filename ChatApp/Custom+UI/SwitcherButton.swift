@@ -14,15 +14,22 @@ protocol SwitcherButtonDelegate: AnyObject {
 
 final class SwitcherButton: UIButton {
     
-    var switcherState: SwitcherState = .light
-    
     weak var delegate: SwitcherButtonDelegate?
+    
+    var switcherState: SwitcherState = .light {
+        didSet {
+            UserDefaults.standard.set(switcherState.rawValue, forKey: "switcherState")
+            configureButton()
+        }
+    }
     
     //MARK: Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        translatesAutoresizingMaskIntoConstraints = false
         configureButton()
+        setUpUserDefaults()
     }
     
     required init?(coder: NSCoder) {
@@ -31,27 +38,46 @@ final class SwitcherButton: UIButton {
     
     // MARK: Button Configuration
     private func configureButton() {
-        setImage(MessageAppImages.lightModeImage, for: .normal)
-        translatesAutoresizingMaskIntoConstraints = false
+        switch switcherState {
+        case .dark:
+            setImage(ChatAppImages.darkModeImage, for: .normal)
+        case .light:
+            setImage(ChatAppImages.lightModeImage, for: .normal)
+        }
+    }
+    
+    // MARK: Set Up UserDefaults
+    private func setUpUserDefaults() {
+        if let switcherStateRawValue = UserDefaults.standard.string(forKey: "switcherState"),
+           let savedSwitcherState = SwitcherState(rawValue: switcherStateRawValue) {
+            switcherState = savedSwitcherState
+        } else {
+            switcherState = .light 
+        }
+    }
+    
+    // MARK: Call Delegate
+    func callDelegate() {
+        delegate?.switcherIsPressed(switcherState)
     }
     
     // MARK: Button Action
     @objc private func buttonPressed() {
         isEnabled = false
-        delegate?.switcherIsPressed(switcherState)
         UIView.animate(withDuration: 0.5,
                        animations: {
             switch self.switcherState {
             case .light :
                 self.switcherState = .dark
-                self.setImage(MessageAppImages.darkModeImage, for: .normal)
+                self.setImage(ChatAppImages.darkModeImage, for: .normal)
                 
             case .dark:
                 self.switcherState = .light
-                self.setImage(MessageAppImages.lightModeImage, for: .normal)
+                self.setImage(ChatAppImages.lightModeImage, for: .normal)
             }
         }, completion: {_ in
             self.isEnabled = true
         })
+        delegate?.switcherIsPressed(switcherState)
     }
 }

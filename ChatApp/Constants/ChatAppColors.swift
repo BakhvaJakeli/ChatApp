@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum MessageAppColors {
+enum ChatAppColors {
     static let backgroundDarkModeColor = UIColor(
         red: 0.086,
         green: 0,
@@ -42,5 +42,20 @@ enum MessageAppColors {
         red: 0.945,
         green: 0.945,
         blue: 0.945,
+        alpha: 1)
+    static let senderBubbleColor = UIColor(
+        red: 0.855,
+        green: 0.761,
+        blue: 1,
+        alpha: 1)
+    static let receiverBubbleColor = UIColor(
+        red: 0.945,
+        green: 0.945,
+        blue: 0.945,
+        alpha: 1)
+    static let dateLabelColor = UIColor(
+        red: 0.78,
+        green: 0.78,
+        blue: 0.78,
         alpha: 1)
 }

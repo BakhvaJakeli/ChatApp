@@ -86,3 +86,13 @@ final class ScrollableTextField: UITextView, UITextViewDelegate {
         ])
     }
 }
+
+// MARK: - Scrollable Text Field Constnats
+private extension ScrollableTextField {
+    enum ScrollableTextFieldConstants {
+        static let leadingPadding: CGFloat = 3
+        static let topPadding: CGFloat = 3
+        static var placeholder = "დაწერე შეტყობინება..."
+        static var maxNumberOfLines = 5
+    }
+}

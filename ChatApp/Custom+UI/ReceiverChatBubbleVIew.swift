@@ -9,36 +9,112 @@ import UIKit
 
 final class ReceiverChatBubbleVIew: UIView {
     
-    let textLabel = UILabel()
-    let timeLabel = UILabel()
+    //MARK: Components
+    lazy var color: UIColor = ChatAppColors.receiverBubbleColor
     
+    private lazy var mainTextBubble: UIView = {
+        let bubble = UIView()
+        bubble.translatesAutoresizingMaskIntoConstraints = false
+        bubble.backgroundColor = color
+        bubble.layer.cornerRadius = ReceiverChatBubbleVIewConstants.mainTextBubbleCornerRadius
+        return bubble
+    }()
+    
+    lazy var messageLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: ReceiverChatBubbleVIewConstants.messageLabelFont)
+        return label
+    }()
+    
+    lazy var dateLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: ReceiverChatBubbleVIewConstants.dateLabelFont)
+        label.textColor = ChatAppColors.dateLabelColor
+        if label.text == "არ გაიგზავნა" {
+            label.textColor = .red
+        }
+        return label
+    }()
+    
+    // MARK: Init
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addingSubviews()
+        constraints()
+        backgroundColor = .clear
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: Adding Sub Views
+    private func addingSubviews() {
+        addSubview(mainTextBubble)
+        addSubview(dateLabel)
+        mainTextBubble.addSubview(messageLabel)
+    }
+    
+    // MARK: Constraints
+    private func constraints() {
+        NSLayoutConstraint.activate([
+            messageLabel.leadingAnchor.constraint(equalTo: mainTextBubble.leadingAnchor, constant: ReceiverChatBubbleVIewConstants.messageLabelPadding),
+            messageLabel.bottomAnchor.constraint(equalTo: mainTextBubble.bottomAnchor, constant: -ReceiverChatBubbleVIewConstants.messageLabelPadding),
+            messageLabel.topAnchor.constraint(equalTo: mainTextBubble.topAnchor, constant: ReceiverChatBubbleVIewConstants.messageLabelPadding),
+            messageLabel.trailingAnchor.constraint(equalTo: mainTextBubble.trailingAnchor, constant: -ReceiverChatBubbleVIewConstants.messageLabelPadding),
+            messageLabel.widthAnchor.constraint(lessThanOrEqualToConstant: ReceiverChatBubbleVIewConstants.messageLabelMaximumWidth),
+            
+            mainTextBubble.topAnchor.constraint(equalTo: topAnchor, constant: ReceiverChatBubbleVIewConstants.mainTextBubbleTopPadding),
+            mainTextBubble.leadingAnchor.constraint(equalTo: leadingAnchor, constant: ReceiverChatBubbleVIewConstants.mainTextBubbleLeadingPadding),
+            mainTextBubble.heightAnchor.constraint(greaterThanOrEqualToConstant: ReceiverChatBubbleVIewConstants.mainTextBubbleMinHeight),
+            mainTextBubble.widthAnchor.constraint(greaterThanOrEqualToConstant: ReceiverChatBubbleVIewConstants.mainTextBubbleMinWidth),
+            
+            dateLabel.topAnchor.constraint(equalTo: mainTextBubble.bottomAnchor, constant: ReceiverChatBubbleVIewConstants.dataLabelTopPadding),
+            dateLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: ReceiverChatBubbleVIewConstants.dateLabelLeadingPadding)
+        ])
+    }
+    
+    // MARK: BazierPath bubbles
     override func draw(_ rect: CGRect) {
-        let mainTextBubble = UIBezierPath(
-            roundedRect: CGRect(
-                x: 32,
-                y: frame.minY,
-                width: textLabel.frame.width,
-                height: textLabel.frame.height),
-            cornerRadius: 25)
-        UIColor.gray.setFill()
-        mainTextBubble.fill()
         
         let firstBubble = UIBezierPath(
             ovalIn: CGRect(
-                x: mainTextBubble.bounds.minX - 5,
-                y: mainTextBubble.bounds.maxY - 18,
+                x: mainTextBubble.frame.minX - 5,
+                y: mainTextBubble.frame.maxY - 17,
                 width: 20,
                 height: 20))
-        UIColor.gray.setFill()
+        color.setFill()
         firstBubble.fill()
         
         let secondBubble = UIBezierPath(
             ovalIn: CGRect(
-                x: mainTextBubble.bounds.minX - 16,
-                y: mainTextBubble.bounds.maxY - 3,
+                x: mainTextBubble.frame.minX - 18,
+                y: mainTextBubble.frame.maxY,
                 width: 10,
                 height: 10))
-        UIColor.gray.setFill()
+        color.setFill()
         secondBubble.fill()
+    }
+}
+
+// MARK: -ReceiverChatBubbleVIew Constants
+private extension ReceiverChatBubbleVIew {
+    enum ReceiverChatBubbleVIewConstants {
+        static let messageLabelPadding: CGFloat = 10
+        static let messageLabelMaximumWidth: CGFloat = 220
+        static let mainTextBubbleTopPadding: CGFloat = 10
+        static let mainTextBubbleLeadingPadding: CGFloat = 30
+        static let mainTextBubbleMinHeight: CGFloat = 50
+        static let mainTextBubbleMinWidth: CGFloat = 50
+        static let dataLabelTopPadding: CGFloat = 4
+        static let dateLabelLeadingPadding: CGFloat = 45
+        static let dataLabelHeight: CGFloat = 10
+        static let mainTextBubbleCornerRadius: CGFloat = 25
+        static let messageLabelFont: CGFloat = 14
+        static let dateLabelFont: CGFloat = 8
     }
 }
