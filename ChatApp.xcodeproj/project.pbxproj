@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F04CBD42A1CF006000A9BBB /* Themeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F04CBD32A1CF006000A9BBB /* Themeable.swift */; };
 		8F80CCC229F0586100F121BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F80CCC129F0586100F121BD /* AppDelegate.swift */; };
 		8F80CCC429F0586100F121BD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F80CCC329F0586100F121BD /* SceneDelegate.swift */; };
 		8F80CCC629F0586100F121BD /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F80CCC529F0586100F121BD /* ChatViewController.swift */; };
@@ -54,6 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8F04CBD32A1CF006000A9BBB /* Themeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Themeable.swift; sourceTree = "<group>"; };
 		8F80CCBE29F0586100F121BD /* ChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F80CCC129F0586100F121BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F80CCC329F0586100F121BD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -112,6 +114,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8F04CBD52A1CF00B000A9BBB /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				8F04CBD32A1CF006000A9BBB /* Themeable.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
 		8F80CCB529F0586000F121BD = {
 			isa = PBXGroup;
 			children = (
@@ -202,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				8F80CCC529F0586100F121BD /* ChatViewController.swift */,
+				8F04CBD52A1CF00B000A9BBB /* Protocols */,
 			);
 			path = Controlers;
 			sourceTree = "<group>";
@@ -394,6 +405,7 @@
 				8F99C3802A16B6F1004807C2 /* SenderTableViewCell.swift in Sources */,
 				8FF84C2D29F9E21400A815E8 /* ReceiverChatBubbleVIew.swift in Sources */,
 				8FF84C2F29FA844500A815E8 /* TextFieldContainerView.swift in Sources */,
+				8F04CBD42A1CF006000A9BBB /* Themeable.swift in Sources */,
 				8F99C3752A16B552004807C2 /* ChatAppColors.swift in Sources */,
 				8F80CCC429F0586100F121BD /* SceneDelegate.swift in Sources */,
 				8F99C38B2A17CA14004807C2 /* Message.xcdatamodeld in Sources */,

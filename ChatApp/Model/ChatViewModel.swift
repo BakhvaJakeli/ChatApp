@@ -18,7 +18,7 @@ final class ChatViewModel {
     var reloadTableView:(() -> ())?
     
     func createMessage(with message: String, senderID: Int32) {
-        CoreDataManager.shared.createMessage(with: message, senderID: senderID, data: &messages)
+        CoreDataManager.shared.createMessage(with: message, senderID: senderID, date: getDate(), data: &messages)
     }
     
     func getMessage() {
@@ -27,5 +27,12 @@ final class ChatViewModel {
     
     func deleteAllData() {
         CoreDataManager.shared.deleteAllData()
+    }
+    
+    func getDate() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM d, H:ss"
+        let date = dateFormatter.string(from: Date())
+        return date
     }
 }

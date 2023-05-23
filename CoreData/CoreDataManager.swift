@@ -11,11 +11,11 @@ final class CoreDataManager {
     
     static let shared = CoreDataManager()
     
-    func createMessage(with message: String, senderID: Int32, data: inout[Message]) {
+    func createMessage(with message: String, senderID: Int32, date: String, data: inout[Message]) {
         let managedContext = AppDelegate.sharedAppDelegate.coreDataStack.managedContext
         let newMessage = Message(context: managedContext)
         if NetworkMonitor.shared.isConnected {
-            newMessage.setValue(getDate(), forKey: #keyPath(Message.dateSent))
+            newMessage.setValue(date, forKey: #keyPath(Message.dateSent))
         }
         else {
             newMessage.setValue(ErrorMessage.errorMessage, forKey: #keyPath(Message.dateSent))
@@ -46,12 +46,5 @@ final class CoreDataManager {
         catch let error {
             print(error.localizedDescription)
         }
-    }
-    
-    func getDate() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM d, H:ss"
-        let date = dateFormatter.string(from: Date())
-        return date
     }
 }

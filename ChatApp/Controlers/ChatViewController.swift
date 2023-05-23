@@ -12,7 +12,7 @@ final class ChatViewController: UIViewController {
     let viewModel = ChatViewModel()
     
     // MARK: Outlets
-    private lazy var dividerView: UIView = {
+    lazy var dividerView: UIView = {
         let view = UIView()
         view.backgroundColor = ChatAppColors.yellowViewColor
         view.layer.masksToBounds = true
@@ -23,9 +23,9 @@ final class ChatViewController: UIViewController {
     
     private lazy var switcherButton = SwitcherButton()
     
-    private lazy var firstChatView = ChatView()
+    lazy var firstChatView = ChatView()
     
-    private lazy var secondChatView = ChatView()
+    lazy var secondChatView = ChatView()
     
     // MARK: ViewDidLoad
     override func viewDidLoad() {
@@ -118,33 +118,17 @@ final class ChatViewController: UIViewController {
     private func configUI() {
         switcherButton.callDelegate()
     }
-    
+}
+
+// MARK: - Themeable Protocol for Light and Dark Mode
+
+extension ChatViewController: Themeable {
     private func setUpViewsForDarkMode() {
-        view.backgroundColor = ChatAppColors.backgroundDarkModeColor
-        dividerView.backgroundColor = ChatAppColors.darkModeYellowViewColor
-        [firstChatView, secondChatView].forEach { view in
-            view?.backgroundColor = ChatAppColors.backgroundDarkModeColor
-        }
-        [firstChatView.textFieldContainer, secondChatView.textFieldContainer].forEach { view in
-            [view, view.textField].forEach { view in
-                view?.backgroundColor = ChatAppColors.backgroundDarkModeColor
-            }
-            view.textField.textColor = ChatAppColors.darkModeTextColor
-        }
+        applyDarkMode()
     }
     
     private func setUpViewsForLightMode() {
-        view.backgroundColor = .systemBackground
-        dividerView.backgroundColor = ChatAppColors.yellowViewColor
-        [firstChatView,secondChatView].forEach { view in
-            view?.backgroundColor = .systemBackground
-        }
-        [firstChatView.textFieldContainer, secondChatView.textFieldContainer].forEach { view in
-            [view, view.textField].forEach { view in
-                view?.backgroundColor = .systemBackground
-            }
-            view.textField.textColor = ChatAppColors.lightModeTextColor
-        }
+        applyLightMode()
     }
 }
 
@@ -175,7 +159,6 @@ extension ChatViewController: sendButtonDelegate {
             viewModel.createMessage(with: textField.text, senderID: 2)
             textField.text = ""
         }
-//        viewModel.deleteAllData()
     }
 }
 
