@@ -33,9 +33,10 @@ final class ReceiverChatBubbleVIew: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: ReceiverChatBubbleVIewConstants.dateLabelFont)
-        label.textColor = ChatAppColors.dateLabelColor
-        if label.text == "არ გაიგზავნა" {
+        if label.text == ErrorMessage.errorMessage {
             label.textColor = .red
+        } else {
+            label.textColor = ChatAppColors.dateLabelColor
         }
         return label
     }()
@@ -45,7 +46,7 @@ final class ReceiverChatBubbleVIew: UIView {
         super.init(frame: frame)
         addingSubviews()
         constraints()
-        backgroundColor = .clear
+        configUI()
     }
     
     required init?(coder: NSCoder) {
@@ -78,6 +79,21 @@ final class ReceiverChatBubbleVIew: UIView {
         ])
     }
     
+    // MARK: Config UI
+    private func configUI() {
+        backgroundColor = .clear
+    }
+    
+    // MARK: Update Content Size
+    override var intrinsicContentSize: CGSize {
+        let labelSize = messageLabel.sizeThatFits(CGSize(width: ReceiverChatBubbleVIewConstants.messageLabelMaximumWidth, height: CGFloat.greatestFiniteMagnitude))
+
+        let bubbleWidth = labelSize.width + 2 * ReceiverChatBubbleVIewConstants.messageLabelPadding
+        let bubbleHeight = labelSize.height + 2 * ReceiverChatBubbleVIewConstants.messageLabelPadding + ReceiverChatBubbleVIewConstants.intrinsicContentSizeHeight
+
+        return CGSize(width: bubbleWidth, height: bubbleHeight)
+    }
+    
     // MARK: BazierPath bubbles
     override func draw(_ rect: CGRect) {
         
@@ -85,8 +101,8 @@ final class ReceiverChatBubbleVIew: UIView {
             ovalIn: CGRect(
                 x: mainTextBubble.frame.minX - 5,
                 y: mainTextBubble.frame.maxY - 17,
-                width: 20,
-                height: 20))
+                width: ReceiverChatBubbleVIewConstants.firstBubbleHeight,
+                height: ReceiverChatBubbleVIewConstants.firstBubbleHeight))
         color.setFill()
         firstBubble.fill()
         
@@ -94,8 +110,8 @@ final class ReceiverChatBubbleVIew: UIView {
             ovalIn: CGRect(
                 x: mainTextBubble.frame.minX - 18,
                 y: mainTextBubble.frame.maxY,
-                width: 10,
-                height: 10))
+                width: ReceiverChatBubbleVIewConstants.secondBubbleHeight,
+                height: ReceiverChatBubbleVIewConstants.secondBubbleHeight))
         color.setFill()
         secondBubble.fill()
     }
@@ -116,5 +132,8 @@ private extension ReceiverChatBubbleVIew {
         static let mainTextBubbleCornerRadius: CGFloat = 25
         static let messageLabelFont: CGFloat = 14
         static let dateLabelFont: CGFloat = 8
+        static let intrinsicContentSizeHeight: CGFloat = 40
+        static let firstBubbleHeight: CGFloat = 20
+        static let secondBubbleHeight: CGFloat = 10
     }
 }

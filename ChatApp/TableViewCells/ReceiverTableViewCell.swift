@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ReceiverTableViewCell: UITableViewCell {
+final class ReceiverTableViewCell: UITableViewCell {
 
     static let identifier = "ReceiverTableViewCell"
     
@@ -26,20 +26,23 @@ class ReceiverTableViewCell: UITableViewCell {
     
     private func configUI() {
         bubble.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(bubble)
+        contentView.addSubview(bubble)
     }
     
     private func constraints() {
         NSLayoutConstraint.activate([
-            bubble.topAnchor.constraint(equalTo: topAnchor),
-            bubble.leadingAnchor.constraint(equalTo: leadingAnchor),
-            bubble.bottomAnchor.constraint(equalTo: bottomAnchor),
-            bubble.trailingAnchor.constraint(equalTo: trailingAnchor)
+            bubble.topAnchor.constraint(equalTo: contentView.topAnchor),
+            bubble.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            bubble.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            bubble.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
         ])
     }
     
     func configCell(with message: Message) {
         bubble.messageLabel.text = message.text
-        bubble.dateLabel.text = message.sendDate
+        bubble.dateLabel.text = message.dateSent
+        if bubble.dateLabel.text == ErrorMessage.errorMessage {
+            bubble.dateLabel.textColor = .red
+        }
     }
 }

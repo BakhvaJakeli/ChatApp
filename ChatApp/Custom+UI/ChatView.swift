@@ -21,7 +21,7 @@ final class ChatView: UIView {
         let tableView = UITableView()
         tableView.backgroundColor = .clear
         tableView.translatesAutoresizingMaskIntoConstraints = false
-//        tableView.separatorStyle = .none
+        tableView.separatorStyle = .none
         tableView.register(SenderTableViewCell.self, forCellReuseIdentifier: SenderTableViewCell.identifier)
         tableView.register(ReceiverTableViewCell.self, forCellReuseIdentifier: ReceiverTableViewCell.identifier)
 

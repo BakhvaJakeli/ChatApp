@@ -175,13 +175,17 @@ extension ChatViewController: sendButtonDelegate {
             viewModel.createMessage(with: textField.text, senderID: 2)
             textField.text = ""
         }
-//        viewModel.deleteAllData(entity: "Message")
+//        viewModel.deleteAllData()
     }
 }
 
 // MARK: - Table View functions
 extension ChatViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
 

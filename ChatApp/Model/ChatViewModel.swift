@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ChatViewModel {
+final class ChatViewModel {
     
     private (set) var messages = [Message]() {
         didSet {

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SenderTableViewCell: UITableViewCell {
+final class SenderTableViewCell: UITableViewCell {
     
     static let identifier = "SenderTableViewCell"
     
@@ -40,6 +40,9 @@ class SenderTableViewCell: UITableViewCell {
     
     func configCell(with message: Message) {
         bubble.messageLabel.text = message.text
-        bubble.dateLabel.text = message.sendDate
+        bubble.dateLabel.text = message.dateSent
+        if bubble.dateLabel.text == ErrorMessage.errorMessage {
+            bubble.dateLabel.textColor = .red
+        }
     }
 }

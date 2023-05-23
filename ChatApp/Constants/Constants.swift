@@ -12,3 +12,8 @@ enum SwitcherState: String {
     case dark
     case light
 }
+
+enum ErrorMessage {
+    static let errorMessage = "არ გაიგზავნა"
+}
+
