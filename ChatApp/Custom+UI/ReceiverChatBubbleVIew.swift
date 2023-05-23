@@ -33,11 +33,7 @@ final class ReceiverChatBubbleVIew: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: ReceiverChatBubbleVIewConstants.dateLabelFont)
-        if label.text == ErrorMessage.errorMessage {
-            label.textColor = .red
-        } else {
-            label.textColor = ChatAppColors.dateLabelColor
-        }
+        label.textColor = ChatAppColors.dateLabelColor
         return label
     }()
     

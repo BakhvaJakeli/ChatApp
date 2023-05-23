@@ -33,6 +33,7 @@ class SenderChatBubbleView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: SenderChatBubbleViewConstants.dateLabelFont)
+        label.textColor = ChatAppColors.dateLabelColor
         return label
     }()
     
