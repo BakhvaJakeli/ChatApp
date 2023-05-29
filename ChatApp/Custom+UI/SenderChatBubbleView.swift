@@ -67,11 +67,13 @@ class SenderChatBubbleView: UIView {
 
             mainTextBubble.topAnchor.constraint(equalTo: topAnchor, constant: SenderChatBubbleViewConstants.mainTextBubbleTopPadding),
             mainTextBubble.trailingAnchor.constraint(equalTo: trailingAnchor, constant: SenderChatBubbleViewConstants.mainTextBubbleTrailingPadding),
+            mainTextBubble.leadingAnchor.constraint(equalTo: leadingAnchor, constant: -SenderChatBubbleViewConstants.mainTextBubbleTrailingPadding),
             mainTextBubble.heightAnchor.constraint(greaterThanOrEqualToConstant: SenderChatBubbleViewConstants.mainTextBubbleMinHeight),
             mainTextBubble.widthAnchor.constraint(greaterThanOrEqualToConstant: SenderChatBubbleViewConstants.mainTextBubbleMinWidth),
             
-            dateLabel.topAnchor.constraint(equalTo: mainTextBubble.bottomAnchor, constant: SenderChatBubbleViewConstants.dataLabelTopPadding),
-            dateLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: SenderChatBubbleViewConstants.dataLabelTrailingPadding)
+            dateLabel.topAnchor.constraint(equalTo: mainTextBubble.bottomAnchor, constant: SenderChatBubbleViewConstants.dateLabelTopPadding),
+            dateLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: SenderChatBubbleViewConstants.dateLabelTrailingPadding),
+            dateLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -SenderChatBubbleViewConstants.dateLabelTopPadding)
         ])
     }
     
@@ -80,23 +82,13 @@ class SenderChatBubbleView: UIView {
         backgroundColor = .clear
     }
     
-    // MARK: Update Content Size
-    override var intrinsicContentSize: CGSize {
-        let labelSize = messageLabel.sizeThatFits(CGSize(width: SenderChatBubbleViewConstants.messageLabelMaximumWidth, height: CGFloat.greatestFiniteMagnitude))
-        
-        let bubbleWidth = labelSize.width + 2 * SenderChatBubbleViewConstants.messageLabelPadding
-        let bubbleHeight = labelSize.height + 2 * SenderChatBubbleViewConstants.messageLabelPadding + SenderChatBubbleViewConstants.intrinsicContentSizeHeight
-        
-        return CGSize(width: bubbleWidth, height: bubbleHeight)
-    }
-    
     // MARK: BazierPath bubbles
     override func draw(_ rect: CGRect) {
         
         let firstBubble = UIBezierPath(
             ovalIn: CGRect(
-                x: mainTextBubble.frame.maxX - 15,
-                y: mainTextBubble.frame.maxY - 17,
+                x: rect.maxX + SenderChatBubbleViewConstants.dateLabelTrailingPadding,
+                y: rect.maxY - SenderChatBubbleViewConstants.mainTextBubbleTopPadding - 25,
                 width: SenderChatBubbleViewConstants.firstBubbleHeight,
                 height: SenderChatBubbleViewConstants.firstBubbleHeight))
         color.setFill()
@@ -122,8 +114,8 @@ private extension SenderChatBubbleView {
         static let mainTextBubbleTrailingPadding: CGFloat = -30
         static let mainTextBubbleMinHeight: CGFloat = 50
         static let mainTextBubbleMinWidth: CGFloat = 50
-        static let dataLabelTopPadding: CGFloat = 4
-        static let dataLabelTrailingPadding: CGFloat = -45
+        static let dateLabelTopPadding: CGFloat = 4
+        static let dateLabelTrailingPadding: CGFloat = -45
         static let mainTextBubbleCornerRadius: CGFloat = 25
         static let messageLabelFont: CGFloat = 14
         static let dateLabelFont: CGFloat = 8

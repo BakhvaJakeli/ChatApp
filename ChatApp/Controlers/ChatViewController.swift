@@ -121,14 +121,25 @@ final class ChatViewController: UIViewController {
 }
 
 // MARK: - Themeable Protocol for Light and Dark Mode
-
 extension ChatViewController: Themeable {
-    private func setUpViewsForDarkMode() {
-        applyDarkMode()
+    func isDarkModeOn(isTrue: Bool) {
+        if isTrue {
+            view.backgroundColor = ChatAppColors.backgroundDarkModeColor
+        } else {
+            view.backgroundColor = .systemBackground
+        }
     }
     
+    private func setUpViewsForDarkMode() {
+        isDarkModeOn(isTrue: true)
+        firstChatView.isDarkModeOn(isTrue: true)
+        secondChatView.isDarkModeOn(isTrue: true)
+    }
+
     private func setUpViewsForLightMode() {
-        applyLightMode()
+        isDarkModeOn(isTrue: false)
+        firstChatView.isDarkModeOn(isTrue: false)
+        secondChatView.isDarkModeOn(isTrue: false)
     }
 }
 
@@ -159,6 +170,7 @@ extension ChatViewController: sendButtonDelegate {
             viewModel.createMessage(with: textField.text, senderID: 2)
             textField.text = ""
         }
+//        viewModel.deleteAllData()
     }
 }
 
@@ -208,6 +220,7 @@ extension ChatViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
     
+    // deselect gaukete mtlan tableVIews
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }

@@ -86,6 +86,16 @@ final class ScrollableTextField: UITextView, UITextViewDelegate {
         ])
     }
 }
+// MARK: - Themeable Protocol for Device Mode
+extension ScrollableTextField: Themeable {
+    func isDarkModeOn(isTrue: Bool) {
+        if isTrue {
+            backgroundColor = ChatAppColors.backgroundDarkModeColor
+        } else {
+            backgroundColor = .systemBackground
+        }
+    }
+}
 
 // MARK: - Scrollable Text Field Constnats
 private extension ScrollableTextField {

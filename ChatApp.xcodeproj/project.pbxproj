@@ -120,6 +120,7 @@
 				8F04CBD32A1CF006000A9BBB /* Themeable.swift */,
 			);
 			name = Protocols;
+			path = Controlers;
 			sourceTree = "<group>";
 		};
 		8F80CCB529F0586000F121BD = {
@@ -152,6 +153,7 @@
 				8F99C37C2A16B674004807C2 /* TableViewCells */,
 				8FF84C0129F94C5F00A815E8 /* Extensions */,
 				8FF84C3229FBF14B00A815E8 /* Custom+UI */,
+				8F04CBD52A1CF00B000A9BBB /* Protocols */,
 				8FF84C0229F94CA700A815E8 /* Constants */,
 				8F80CCC329F0586100F121BD /* SceneDelegate.swift */,
 				8F80CCC129F0586100F121BD /* AppDelegate.swift */,
@@ -212,7 +214,6 @@
 			isa = PBXGroup;
 			children = (
 				8F80CCC529F0586100F121BD /* ChatViewController.swift */,
-				8F04CBD52A1CF00B000A9BBB /* Protocols */,
 			);
 			path = Controlers;
 			sourceTree = "<group>";

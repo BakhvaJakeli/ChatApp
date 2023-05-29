@@ -11,6 +11,7 @@ final class CoreDataManager {
     
     static let shared = CoreDataManager()
     
+    // shecvale es funqcia
     func createMessage(with message: String, senderID: Int32, date: String, data: inout[Message]) {
         let managedContext = AppDelegate.sharedAppDelegate.coreDataStack.managedContext
         let newMessage = Message(context: managedContext)

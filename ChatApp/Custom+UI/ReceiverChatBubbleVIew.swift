@@ -67,27 +67,19 @@ final class ReceiverChatBubbleVIew: UIView {
             
             mainTextBubble.topAnchor.constraint(equalTo: topAnchor, constant: ReceiverChatBubbleVIewConstants.mainTextBubbleTopPadding),
             mainTextBubble.leadingAnchor.constraint(equalTo: leadingAnchor, constant: ReceiverChatBubbleVIewConstants.mainTextBubbleLeadingPadding),
+            mainTextBubble.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -ReceiverChatBubbleVIewConstants.dateLabelLeadingPadding),
             mainTextBubble.heightAnchor.constraint(greaterThanOrEqualToConstant: ReceiverChatBubbleVIewConstants.mainTextBubbleMinHeight),
             mainTextBubble.widthAnchor.constraint(greaterThanOrEqualToConstant: ReceiverChatBubbleVIewConstants.mainTextBubbleMinWidth),
             
-            dateLabel.topAnchor.constraint(equalTo: mainTextBubble.bottomAnchor, constant: ReceiverChatBubbleVIewConstants.dataLabelTopPadding),
-            dateLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: ReceiverChatBubbleVIewConstants.dateLabelLeadingPadding)
+            dateLabel.topAnchor.constraint(equalTo: mainTextBubble.bottomAnchor, constant: ReceiverChatBubbleVIewConstants.dateLabelTopPadding),
+            dateLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: ReceiverChatBubbleVIewConstants.dateLabelLeadingPadding),
+            dateLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -ReceiverChatBubbleVIewConstants.dateLabelTopPadding)
         ])
     }
     
     // MARK: Config UI
     private func configUI() {
         backgroundColor = .clear
-    }
-    
-    // MARK: Update Content Size
-    override var intrinsicContentSize: CGSize {
-        let labelSize = messageLabel.sizeThatFits(CGSize(width: ReceiverChatBubbleVIewConstants.messageLabelMaximumWidth, height: CGFloat.greatestFiniteMagnitude))
-
-        let bubbleWidth = labelSize.width + 2 * ReceiverChatBubbleVIewConstants.messageLabelPadding
-        let bubbleHeight = labelSize.height + 2 * ReceiverChatBubbleVIewConstants.messageLabelPadding + ReceiverChatBubbleVIewConstants.intrinsicContentSizeHeight
-
-        return CGSize(width: bubbleWidth, height: bubbleHeight)
     }
     
     // MARK: BazierPath bubbles
@@ -122,9 +114,9 @@ private extension ReceiverChatBubbleVIew {
         static let mainTextBubbleLeadingPadding: CGFloat = 30
         static let mainTextBubbleMinHeight: CGFloat = 50
         static let mainTextBubbleMinWidth: CGFloat = 50
-        static let dataLabelTopPadding: CGFloat = 4
+        static let dateLabelTopPadding: CGFloat = 4
         static let dateLabelLeadingPadding: CGFloat = 45
-        static let dataLabelHeight: CGFloat = 10
+        static let dateLabelHeight: CGFloat = 10
         static let mainTextBubbleCornerRadius: CGFloat = 25
         static let messageLabelFont: CGFloat = 14
         static let dateLabelFont: CGFloat = 8

@@ -102,6 +102,21 @@ final class TextFieldContainerView: UIView {
     }
 }
 
+// MARK: - Themeable Protocol for Device Mode
+extension TextFieldContainerView: Themeable {
+    func isDarkModeOn(isTrue: Bool) {
+        if isTrue {
+            textField.textColor = ChatAppColors.darkModeTextColor
+            backgroundColor = ChatAppColors.backgroundDarkModeColor
+        }
+        else {
+            textField.textColor = ChatAppColors.lightModeTextColor
+            backgroundColor = .systemBackground
+        }
+        textField.isDarkModeOn(isTrue: isTrue)
+    }
+}
+
 // MARK: - Text Field Containter Constatns
 private extension TextFieldContainerView {
     enum TextFieldContainerViewConstants {

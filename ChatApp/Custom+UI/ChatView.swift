@@ -22,6 +22,7 @@ final class ChatView: UIView {
         tableView.backgroundColor = .clear
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
+        tableView.allowsSelection = false
         tableView.register(SenderTableViewCell.self, forCellReuseIdentifier: SenderTableViewCell.identifier)
         tableView.register(ReceiverTableViewCell.self, forCellReuseIdentifier: ReceiverTableViewCell.identifier)
 
@@ -72,6 +73,17 @@ final class ChatView: UIView {
     }
 }
 
+// MARK: - Themeable Protocol for Device Mode
+extension ChatView: Themeable {
+    func isDarkModeOn(isTrue: Bool) {
+        if isTrue {
+            backgroundColor = ChatAppColors.backgroundDarkModeColor
+        } else {
+            backgroundColor = .systemBackground
+        }
+        textFieldContainer.isDarkModeOn(isTrue: isTrue)
+    }
+}
 // MARK: - Table View Functions
 extension ChatView {
     public func configTableView(dataSource: UITableViewDataSource, delegate: UITableViewDelegate) {

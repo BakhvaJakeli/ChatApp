@@ -17,7 +17,6 @@ final class ReceiverTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configUI()
         constraints()
-        backgroundColor = .clear
     }
     
     required init?(coder: NSCoder) {
@@ -26,11 +25,17 @@ final class ReceiverTableViewCell: UITableViewCell {
     
     private func configUI() {
         bubble.translatesAutoresizingMaskIntoConstraints = false
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundColor = .clear
         contentView.addSubview(bubble)
     }
     
     private func constraints() {
         NSLayoutConstraint.activate([
+            contentView.topAnchor.constraint(equalTo: topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
             bubble.topAnchor.constraint(equalTo: contentView.topAnchor),
             bubble.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             bubble.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
