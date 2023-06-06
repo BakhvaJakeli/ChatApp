@@ -9,14 +9,14 @@ import UIKit
 
 // MARK: Switcher Button Delegate
 protocol SwitcherButtonDelegate: AnyObject {
-    func switcherIsPressed(_ state: SwitcherState)
+    func switcherIsPressed(_ state: ChatAppComponents.SwitcherState)
 }
 
 final class SwitcherButton: UIButton {
     
     weak var delegate: SwitcherButtonDelegate?
     
-    var switcherState: SwitcherState = .light {
+    var switcherState: ChatAppComponents.SwitcherState = .light {
         didSet {
             UserDefaults.standard.set(switcherState.rawValue, forKey: "switcherState")
             configureButton()
@@ -49,7 +49,7 @@ final class SwitcherButton: UIButton {
     // MARK: Set Up UserDefaults
     private func setUpUserDefaults() {
         if let switcherStateRawValue = UserDefaults.standard.string(forKey: "switcherState"),
-           let savedSwitcherState = SwitcherState(rawValue: switcherStateRawValue) {
+           let savedSwitcherState = ChatAppComponents.SwitcherState(rawValue: switcherStateRawValue) {
             switcherState = savedSwitcherState
         } else {
             switcherState = .light 
@@ -64,7 +64,7 @@ final class SwitcherButton: UIButton {
     // MARK: Button Action
     @objc private func buttonPressed() {
         isEnabled = false
-        UIView.animate(withDuration: 0.5,
+        UIView.animate(withDuration: SwitcherButtonConstants.animationDuration,
                        animations: {
             switch self.switcherState {
             case .light :
@@ -79,5 +79,11 @@ final class SwitcherButton: UIButton {
             self.isEnabled = true
         })
         delegate?.switcherIsPressed(switcherState)
+    }
+}
+
+private extension SwitcherButton {
+    enum SwitcherButtonConstants {
+        static let animationDuration: CGFloat = 0.5
     }
 }

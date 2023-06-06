@@ -7,8 +7,12 @@
 
 import UIKit
 
+//protocol TypingDelegate: AnyObject {
+//    func typingMonitor(typing:Bool)
+//}
+
 final class ScrollableTextField: UITextView, UITextViewDelegate {
-    
+            
     // MARK: Text View Line Height
     var lineHeight: CGFloat {
         font?.lineHeight ?? 0
@@ -43,13 +47,15 @@ final class ScrollableTextField: UITextView, UITextViewDelegate {
     }
     
     // MARK: Place Holder Label
-    private lazy var placeholderLabel = UILabel()
+    private let placeholderLabel = UILabel()
     
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
         configurePlaceholderLabel()
         setUpConstraints()
     }
+    
+    @available(*, unavailable)
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -88,12 +94,8 @@ final class ScrollableTextField: UITextView, UITextViewDelegate {
 }
 // MARK: - Themeable Protocol for Device Mode
 extension ScrollableTextField: Themeable {
-    func isDarkModeOn(isTrue: Bool) {
-        if isTrue {
-            backgroundColor = ChatAppColors.backgroundDarkModeColor
-        } else {
-            backgroundColor = .systemBackground
-        }
+    func isDarkModeOn(_ isTrue: Bool) {
+        backgroundColor = (isTrue ? ChatAppColors.backgroundDarkModeColor : .systemBackground)
     }
 }
 

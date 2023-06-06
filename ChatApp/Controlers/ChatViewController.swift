@@ -9,10 +9,10 @@ import UIKit
 
 final class ChatViewController: UIViewController {
     
-    let viewModel = ChatViewModel()
+    private let viewModel = ChatViewModel()
     
     // MARK: Outlets
-    lazy var dividerView: UIView = {
+    private let dividerView: UIView = {
         let view = UIView()
         view.backgroundColor = ChatAppColors.yellowViewColor
         view.layer.masksToBounds = true
@@ -21,16 +21,15 @@ final class ChatViewController: UIViewController {
         return view
     }()
     
-    private lazy var switcherButton = SwitcherButton()
+    private let switcherButton = SwitcherButton()
     
-    lazy var firstChatView = ChatView()
+    private let firstChatView = ChatView()
     
-    lazy var secondChatView = ChatView()
+    private let secondChatView = ChatView()
     
     // MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
         setUpUI()
         configUI()
         addSubViews()
@@ -100,59 +99,53 @@ final class ChatViewController: UIViewController {
         viewModel.reloadTableView = { [weak self] in
             guard let self = self else {return}
             DispatchQueue.main.async {
-                [self.firstChatView.chatTableView, self.secondChatView.chatTableView].forEach{$0.reloadData()}
+                [self.firstChatView.getTableView(), self.secondChatView.getTableView()].forEach{$0.reloadData()}
             }
         }
         switcherButton.delegate = self
-        firstChatView.textFieldContainer.delegate = self
-        secondChatView.textFieldContainer.delegate = self
+        firstChatView.textFieldDelegate(self)
+        secondChatView.textFieldDelegate(self)
         firstChatView.configTableView(dataSource: self, delegate: self)
         secondChatView.configTableView(dataSource: self, delegate: self)
         [switcherButton, firstChatView, secondChatView].forEach { view in
             view.translatesAutoresizingMaskIntoConstraints = false
         }
-        [firstChatView.chatTableView, secondChatView.chatTableView].forEach{$0.reloadData()}
+        [firstChatView.getTableView(), secondChatView.getTableView()].forEach{$0.reloadData()}
+        view.backgroundColor = .systemBackground
     }
     
     // MARK: UI configuration
     private func configUI() {
         switcherButton.callDelegate()
+        hideKeyboardWhenTappedAround()
     }
 }
 
 // MARK: - Themeable Protocol for Light and Dark Mode
 extension ChatViewController: Themeable {
-    func isDarkModeOn(isTrue: Bool) {
+    func isDarkModeOn(_ isTrue: Bool) {
         if isTrue {
             view.backgroundColor = ChatAppColors.backgroundDarkModeColor
         } else {
             view.backgroundColor = .systemBackground
         }
     }
-    
-    private func setUpViewsForDarkMode() {
-        isDarkModeOn(isTrue: true)
-        firstChatView.isDarkModeOn(isTrue: true)
-        secondChatView.isDarkModeOn(isTrue: true)
-    }
-
-    private func setUpViewsForLightMode() {
-        isDarkModeOn(isTrue: false)
-        firstChatView.isDarkModeOn(isTrue: false)
-        secondChatView.isDarkModeOn(isTrue: false)
-    }
 }
 
 // MARK: - Switcher Button Delegate
 extension ChatViewController: SwitcherButtonDelegate {
-    func switcherIsPressed(_ state: SwitcherState) {
-        UIView.animate(withDuration: 0.5,
+    func switcherIsPressed(_ state: ChatAppComponents.SwitcherState) {
+        UIView.animate(withDuration: ChatViewControllerConstants.animationDuration,
                        animations: {
             switch state {
             case .dark:
-                self.setUpViewsForDarkMode()
+                self.isDarkModeOn(true)
+                self.firstChatView.isDarkModeOn(true)
+                self.secondChatView.isDarkModeOn(true)
             case .light:
-                self.setUpViewsForLightMode()
+                self.isDarkModeOn(false)
+                self.firstChatView.isDarkModeOn(false)
+                self.secondChatView.isDarkModeOn(false)
             }
         },completion: nil)
     }
@@ -161,39 +154,53 @@ extension ChatViewController: SwitcherButtonDelegate {
 // MARK: - Send Button Delegate
 extension ChatViewController: sendButtonDelegate {
     func sendMessage(_ textField: ScrollableTextField) {
-        let firstTextField = firstChatView.textFieldContainer.textField
-        let secondTextField = secondChatView.textFieldContainer.textField
+        let firstText = firstChatView.getText()
+        let secondtext = secondChatView.getText()
+        let firstTextField = firstChatView.getTextField()
+        let secondTextField = secondChatView.getTextField()
         if textField == firstTextField {
-            viewModel.createMessage(with: textField.text, senderID: 1)
+            viewModel.createMessage(with: firstText, senderID: 1)
             textField.text = ""
         } else if textField == secondTextField {
-            viewModel.createMessage(with: textField.text, senderID: 2)
+            viewModel.createMessage(with: secondtext, senderID: 2)
             textField.text = ""
         }
-//        viewModel.deleteAllData()
+    }
+}
+
+// MARK: - Keyboard Hide Function
+extension ChatViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
 
 // MARK: - Table View functions
 extension ChatViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        UITableView.automaticDimension
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.messages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let message = viewModel.messages[indexPath.row]
-        let senderCell = tableView.dequeueReusableCell(withIdentifier: SenderTableViewCell.identifier) as! SenderTableViewCell
-        let receiverCell = tableView.dequeueReusableCell(withIdentifier: ReceiverTableViewCell.identifier) as! ReceiverTableViewCell
+        guard let senderCell = tableView.dequeueReusableCell(withIdentifier: SenderTableViewCell.identifier) as? SenderTableViewCell else {return UITableViewCell()}
+        guard let receiverCell = tableView.dequeueReusableCell(withIdentifier: ReceiverTableViewCell.identifier) as? ReceiverTableViewCell else {return UITableViewCell()}
         switch tableView {
-        case firstChatView.chatTableView:
+        case firstChatView.getTableView():
             switch message.senderID {
             case 1:
                 senderCell.configCell(with: message)
@@ -204,7 +211,7 @@ extension ChatViewController: UITableViewDataSource, UITableViewDelegate {
             default:
                 return UITableViewCell()
             }
-        case secondChatView.chatTableView:
+        case secondChatView.getTableView():
             switch message.senderID {
             case 1:
                 receiverCell.configCell(with: message)
@@ -219,11 +226,6 @@ extension ChatViewController: UITableViewDataSource, UITableViewDelegate {
             return UITableViewCell()
         }
     }
-    
-    // deselect gaukete mtlan tableVIews
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
 }
 
 // MARK: -View Controller Constants
@@ -234,5 +236,6 @@ private extension ChatViewController {
         static let switcherTopPadding: CGFloat = 8
         static let dividerViewHeight: CGFloat = 6
         static let firstChatViewBottomPadding: CGFloat = -30
+        static let animationDuration: CGFloat = 0.5
     }
 }

@@ -10,14 +10,15 @@ import UIKit
 final class ChatView: UIView {
     
     // MARK: Components
-    lazy var textFieldContainer: TextFieldContainerView = {
+    private lazy var textFieldContainer: TextFieldContainerView = {
         let container = TextFieldContainerView()
         container.translatesAutoresizingMaskIntoConstraints = false
-        container.textField.font = .systemFont(ofSize: ChatViewConstants.textFieldFont)
+        container.getTextField().font = .systemFont(ofSize: ChatViewConstants.textFieldFont)
+        
         return container
     }()
     
-    lazy var chatTableView: UITableView = {
+    private lazy var chatTableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .clear
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -25,7 +26,7 @@ final class ChatView: UIView {
         tableView.allowsSelection = false
         tableView.register(SenderTableViewCell.self, forCellReuseIdentifier: SenderTableViewCell.identifier)
         tableView.register(ReceiverTableViewCell.self, forCellReuseIdentifier: ReceiverTableViewCell.identifier)
-
+        
         return tableView
     }()
     
@@ -35,6 +36,8 @@ final class ChatView: UIView {
         addSubviews()
         addConstraints()
     }
+    
+    @available(*, unavailable)
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -62,7 +65,7 @@ final class ChatView: UIView {
         ])
     }
     
-    //MARK: Text Field Container Constraints
+    // MARK: Text Field Container Constraints
     private func textFieldContainerConstraints() {
         NSLayoutConstraint.activate([
             textFieldContainer.centerXAnchor.constraint(equalTo: centerXAnchor),
@@ -71,17 +74,33 @@ final class ChatView: UIView {
             textFieldContainer.heightAnchor.constraint(greaterThanOrEqualToConstant: ChatViewConstants.containterHeightConstant)
         ])
     }
+    
+    func textFieldDelegate(_ self: UIViewController) {
+        textFieldContainer.delegate = self as? sendButtonDelegate
+    }
+    
+    func getText() -> String {
+        textFieldContainer.getText()
+    }
+    
+    func getTextField() -> ScrollableTextField {
+        textFieldContainer.getTextField()
+    }
+    
+    func getTableView() -> UITableView {
+        chatTableView
+    }
 }
 
 // MARK: - Themeable Protocol for Device Mode
 extension ChatView: Themeable {
-    func isDarkModeOn(isTrue: Bool) {
+    func isDarkModeOn(_ isTrue: Bool) {
         if isTrue {
             backgroundColor = ChatAppColors.backgroundDarkModeColor
         } else {
             backgroundColor = .systemBackground
         }
-        textFieldContainer.isDarkModeOn(isTrue: isTrue)
+        textFieldContainer.isDarkModeOn(isTrue)
     }
 }
 // MARK: - Table View Functions

@@ -11,7 +11,7 @@ final class ReceiverTableViewCell: UITableViewCell {
 
     static let identifier = "ReceiverTableViewCell"
     
-    lazy var bubble = ReceiverChatBubbleVIew()
+    private let bubble = ReceiverChatBubbleVIew()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -44,10 +44,6 @@ final class ReceiverTableViewCell: UITableViewCell {
     }
     
     func configCell(with message: Message) {
-        bubble.messageLabel.text = message.text
-        bubble.dateLabel.text = message.dateSent
-        if bubble.dateLabel.text == ErrorMessage.errorMessage {
-            bubble.dateLabel.textColor = .red
-        }
+        bubble.setUpBubble(with: message)
     }
 }

@@ -11,7 +11,7 @@ final class SenderTableViewCell: UITableViewCell {
     
     static let identifier = "SenderTableViewCell"
     
-    lazy var bubble = SenderChatBubbleView()
+    private let bubble = SenderChatBubbleView()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -45,10 +45,6 @@ final class SenderTableViewCell: UITableViewCell {
     }
     
     func configCell(with message: Message) {
-        bubble.messageLabel.text = message.text
-        bubble.dateLabel.text = message.dateSent
-        if bubble.dateLabel.text == ErrorMessage.errorMessage {
-            bubble.dateLabel.textColor = .red
-        }
+        bubble.setUpBubble(with: message)
     }
 }

@@ -9,5 +9,5 @@ import Foundation
 import UIKit
 
 protocol Themeable {
-    func isDarkModeOn(isTrue: Bool)
+    func isDarkModeOn(_ isTrue: Bool)
 }

@@ -34,7 +34,7 @@
 		8FF84C2F29FA844500A815E8 /* TextFieldContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF84C2E29FA844500A815E8 /* TextFieldContainerView.swift */; };
 		8FF84C3829FC55CB00A815E8 /* SwitcherButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF84C3729FC55CB00A815E8 /* SwitcherButton.swift */; };
 		8FF84C3A29FC5F9D00A815E8 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF84C3929FC5F9D00A815E8 /* ChatView.swift */; };
-		8FF84C682A0157DD00A815E8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF84C672A0157DD00A815E8 /* Constants.swift */; };
+		8FF84C682A0157DD00A815E8 /* ChatAppComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF84C672A0157DD00A815E8 /* ChatAppComponents.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,7 +86,7 @@
 		8FF84C2E29FA844500A815E8 /* TextFieldContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldContainerView.swift; sourceTree = "<group>"; };
 		8FF84C3729FC55CB00A815E8 /* SwitcherButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitcherButton.swift; sourceTree = "<group>"; };
 		8FF84C3929FC5F9D00A815E8 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
-		8FF84C672A0157DD00A815E8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		8FF84C672A0157DD00A815E8 /* ChatAppComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAppComponents.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,7 +237,7 @@
 		8FF84C0229F94CA700A815E8 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				8FF84C672A0157DD00A815E8 /* Constants.swift */,
+				8FF84C672A0157DD00A815E8 /* ChatAppComponents.swift */,
 				8F99C3742A16B552004807C2 /* ChatAppColors.swift */,
 				8F99C3762A16B580004807C2 /* ChatAppImages.swift */,
 			);
@@ -398,7 +398,7 @@
 				8F80CCF229F17BDC00F121BD /* ChatViewModel.swift in Sources */,
 				8F99C3772A16B580004807C2 /* ChatAppImages.swift in Sources */,
 				8F99C3822A16B7C8004807C2 /* CoreDataStack.swift in Sources */,
-				8FF84C682A0157DD00A815E8 /* Constants.swift in Sources */,
+				8FF84C682A0157DD00A815E8 /* ChatAppComponents.swift in Sources */,
 				8F99C3882A16B866004807C2 /* CoreDataManager.swift in Sources */,
 				8FF84C0629F9C87400A815E8 /* Constraints+Extenstion.swift in Sources */,
 				8F99C37E2A16B6D2004807C2 /* ReceiverTableViewCell.swift in Sources */,

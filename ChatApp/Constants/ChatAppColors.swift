@@ -1,5 +1,5 @@
 //
-//  UIColor+Extensions.swift
+//  ChatAppColors
 //  ChatApp
 //
 //  Created by bakhva  on 28.04.23.

@@ -1,5 +1,5 @@
 //
-//  UIImageView+Extensions.swift
+//  ChatAppImages.swift
 //  ChatApp
 //
 //  Created by bakhva  on 28.04.23.

@@ -10,7 +10,7 @@ import UIKit
 final class ReceiverChatBubbleVIew: UIView {
     
     //MARK: Components
-    lazy var color: UIColor = ChatAppColors.receiverBubbleColor
+    private let color: UIColor = ChatAppColors.receiverBubbleColor
     
     private lazy var mainTextBubble: UIView = {
         let bubble = UIView()
@@ -20,7 +20,7 @@ final class ReceiverChatBubbleVIew: UIView {
         return bubble
     }()
     
-    lazy var messageLabel: UILabel = {
+    private let messageLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.textAlignment = .center
@@ -29,7 +29,7 @@ final class ReceiverChatBubbleVIew: UIView {
         return label
     }()
     
-    lazy var dateLabel: UILabel = {
+    private let dateLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: ReceiverChatBubbleVIewConstants.dateLabelFont)
@@ -80,6 +80,15 @@ final class ReceiverChatBubbleVIew: UIView {
     // MARK: Config UI
     private func configUI() {
         backgroundColor = .clear
+    }
+    
+    // MARK: Set Up Bubble
+    func setUpBubble(with message: Message) {
+        messageLabel.text = message.text
+        dateLabel.text = message.dateSent
+        if dateLabel.text == ChatAppComponents.errorMessage {
+            dateLabel.textColor = .red
+        }
     }
     
     // MARK: BazierPath bubbles

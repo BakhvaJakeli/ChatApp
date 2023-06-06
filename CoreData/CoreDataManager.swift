@@ -19,7 +19,7 @@ final class CoreDataManager {
             newMessage.setValue(date, forKey: #keyPath(Message.dateSent))
         }
         else {
-            newMessage.setValue(ErrorMessage.errorMessage, forKey: #keyPath(Message.dateSent))
+            newMessage.setValue(ChatAppComponents.errorMessage, forKey: #keyPath(Message.dateSent))
         }
         newMessage.setValue(message, forKey: #keyPath(Message.text))
         newMessage.setValue(senderID, forKey: "senderID")

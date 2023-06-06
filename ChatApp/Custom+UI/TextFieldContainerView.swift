@@ -16,7 +16,7 @@ final class TextFieldContainerView: UIView {
     weak var delegate: sendButtonDelegate?
     
     // MARK: Outlets
-    let textField = ScrollableTextField()
+    private let textField = ScrollableTextField()
     
     private lazy var sendButton: UIButton = {
         let button = UIButton(type: .system)
@@ -100,20 +100,22 @@ final class TextFieldContainerView: UIView {
         if text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {return}
         delegate?.sendMessage(textField)
     }
+    
+    func getText() -> String {
+        textField.text
+    }
+    
+    func getTextField() -> ScrollableTextField {
+        textField
+    }
 }
 
 // MARK: - Themeable Protocol for Device Mode
 extension TextFieldContainerView: Themeable {
-    func isDarkModeOn(isTrue: Bool) {
-        if isTrue {
-            textField.textColor = ChatAppColors.darkModeTextColor
-            backgroundColor = ChatAppColors.backgroundDarkModeColor
-        }
-        else {
-            textField.textColor = ChatAppColors.lightModeTextColor
-            backgroundColor = .systemBackground
-        }
-        textField.isDarkModeOn(isTrue: isTrue)
+    func isDarkModeOn(_ isTrue: Bool) {
+        textField.textColor = isTrue ? ChatAppColors.darkModeTextColor : ChatAppColors.lightModeTextColor
+        backgroundColor = isTrue ? ChatAppColors.backgroundDarkModeColor : .systemBackground
+        textField.isDarkModeOn(isTrue)
     }
 }
 
