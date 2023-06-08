@@ -7,10 +7,6 @@
 
 import UIKit
 
-//protocol TypingDelegate: AnyObject {
-//    func typingMonitor(typing:Bool)
-//}
-
 final class ScrollableTextField: UITextView, UITextViewDelegate {
             
     // MARK: Text View Line Height

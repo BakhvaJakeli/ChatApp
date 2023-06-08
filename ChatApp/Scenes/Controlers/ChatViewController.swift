@@ -57,7 +57,6 @@ final class ChatViewController: UIViewController {
     // MARK: Set Up Switcher Constraints
     private func setUpSwitcherConstraints() {
         NSLayoutConstraint.activate([
-            // gaitane es constanshi
             switcherButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,
                                                      constant: ChatViewControllerConstants.switcherRightPadding),
             switcherButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
@@ -180,7 +179,6 @@ extension ChatViewController: sendButtonDelegate {
             textField.text = ""
         }
         scrollToLastMessage()
-//        viewModel.deleteAllData()
     }
 }
 
