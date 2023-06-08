@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8F04CBD42A1CF006000A9BBB /* Themeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F04CBD32A1CF006000A9BBB /* Themeable.swift */; };
+		8F04CBEC2A321328000A9BBB /* Themeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F04CBEB2A321328000A9BBB /* Themeable.swift */; };
 		8F80CCC229F0586100F121BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F80CCC129F0586100F121BD /* AppDelegate.swift */; };
 		8F80CCC429F0586100F121BD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F80CCC329F0586100F121BD /* SceneDelegate.swift */; };
 		8F80CCC629F0586100F121BD /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F80CCC529F0586100F121BD /* ChatViewController.swift */; };
@@ -55,7 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8F04CBD32A1CF006000A9BBB /* Themeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Themeable.swift; sourceTree = "<group>"; };
+		8F04CBEB2A321328000A9BBB /* Themeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Themeable.swift; sourceTree = "<group>"; };
 		8F80CCBE29F0586100F121BD /* ChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F80CCC129F0586100F121BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F80CCC329F0586100F121BD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -114,20 +114,56 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8F04CBD52A1CF00B000A9BBB /* Protocols */ = {
+		8F04CBE32A321153000A9BBB /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				8F04CBD32A1CF006000A9BBB /* Themeable.swift */,
+				8F80CCCC29F0586300F121BD /* LaunchScreen.storyboard */,
+				8FF84BFF29F94C3000A815E8 /* Controlers */,
+				8FF84C0029F94C3D00A815E8 /* Model */,
 			);
-			name = Protocols;
-			path = Controlers;
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		8F04CBE62A3211CC000A9BBB /* App */ = {
+			isa = PBXGroup;
+			children = (
+				8F80CCC329F0586100F121BD /* SceneDelegate.swift */,
+				8F80CCC129F0586100F121BD /* AppDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		8F04CBE82A32124A000A9BBB /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				8F04CBEA2A321310000A9BBB /* Protocols */,
+				8FF84C0129F94C5F00A815E8 /* Extensions */,
+				8F99C37C2A16B674004807C2 /* TableViewCells */,
+				8FF84C3229FBF14B00A815E8 /* Custom+UI */,
+				8F99C3782A16B5A3004807C2 /* Network */,
+				8F99C3792A16B626004807C2 /* CoreData */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		8F04CBE92A3212A0000A9BBB /* Supporting FIles */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Supporting FIles";
+			sourceTree = "<group>";
+		};
+		8F04CBEA2A321310000A9BBB /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				8F04CBEB2A321328000A9BBB /* Themeable.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		8F80CCB529F0586000F121BD = {
 			isa = PBXGroup;
 			children = (
-				8F99C3792A16B626004807C2 /* CoreData */,
-				8F99C3782A16B5A3004807C2 /* Network */,
 				8F80CCC029F0586100F121BD /* ChatApp */,
 				8F80CCD729F0586300F121BD /* ChatAppTests */,
 				8F80CCE129F0586300F121BD /* ChatAppUITests */,
@@ -148,17 +184,11 @@
 		8F80CCC029F0586100F121BD /* ChatApp */ = {
 			isa = PBXGroup;
 			children = (
-				8FF84BFF29F94C3000A815E8 /* Controlers */,
-				8FF84C0029F94C3D00A815E8 /* Model */,
-				8F99C37C2A16B674004807C2 /* TableViewCells */,
-				8FF84C0129F94C5F00A815E8 /* Extensions */,
-				8FF84C3229FBF14B00A815E8 /* Custom+UI */,
-				8F04CBD52A1CF00B000A9BBB /* Protocols */,
+				8F04CBE92A3212A0000A9BBB /* Supporting FIles */,
+				8F04CBE82A32124A000A9BBB /* Core */,
+				8F04CBE62A3211CC000A9BBB /* App */,
+				8F04CBE32A321153000A9BBB /* Scenes */,
 				8FF84C0229F94CA700A815E8 /* Constants */,
-				8F80CCC329F0586100F121BD /* SceneDelegate.swift */,
-				8F80CCC129F0586100F121BD /* AppDelegate.swift */,
-				8F99C3892A17CA14004807C2 /* Message.xcdatamodeld */,
-				8F80CCCC29F0586300F121BD /* LaunchScreen.storyboard */,
 				8F80CCF629F5BF1C00F121BD /* Assets.xcassets */,
 				8F80CCCF29F0586300F121BD /* Info.plist */,
 			);
@@ -197,6 +227,7 @@
 				8F99C38C2A17CA8F004807C2 /* Message+CoreDataClass.swift */,
 				8F99C3812A16B7C8004807C2 /* CoreDataStack.swift */,
 				8F99C3872A16B866004807C2 /* CoreDataManager.swift */,
+				8F99C3892A17CA14004807C2 /* Message.xcdatamodeld */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -402,11 +433,11 @@
 				8F99C3882A16B866004807C2 /* CoreDataManager.swift in Sources */,
 				8FF84C0629F9C87400A815E8 /* Constraints+Extenstion.swift in Sources */,
 				8F99C37E2A16B6D2004807C2 /* ReceiverTableViewCell.swift in Sources */,
+				8F04CBEC2A321328000A9BBB /* Themeable.swift in Sources */,
 				8F80CCFB29F751A300F121BD /* ScrollableTextField.swift in Sources */,
 				8F99C3802A16B6F1004807C2 /* SenderTableViewCell.swift in Sources */,
 				8FF84C2D29F9E21400A815E8 /* ReceiverChatBubbleVIew.swift in Sources */,
 				8FF84C2F29FA844500A815E8 /* TextFieldContainerView.swift in Sources */,
-				8F04CBD42A1CF006000A9BBB /* Themeable.swift in Sources */,
 				8F99C3752A16B552004807C2 /* ChatAppColors.swift in Sources */,
 				8F80CCC429F0586100F121BD /* SceneDelegate.swift in Sources */,
 				8F99C38B2A17CA14004807C2 /* Message.xcdatamodeld in Sources */,

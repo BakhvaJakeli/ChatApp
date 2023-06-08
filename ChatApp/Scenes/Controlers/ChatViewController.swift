@@ -57,8 +57,9 @@ final class ChatViewController: UIViewController {
     // MARK: Set Up Switcher Constraints
     private func setUpSwitcherConstraints() {
         NSLayoutConstraint.activate([
+            // gaitane es constanshi
             switcherButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,
-                                                     constant: -(view.frame.width * 0.032)),
+                                                     constant: ChatViewControllerConstants.switcherRightPadding),
             switcherButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
                                                 constant: ChatViewControllerConstants.switcherTopPadding),
             switcherButton.widthAnchor.constraint(equalToConstant: ChatViewControllerConstants.switcherWidth),
@@ -118,6 +119,19 @@ final class ChatViewController: UIViewController {
     private func configUI() {
         switcherButton.callDelegate()
         hideKeyboardWhenTappedAround()
+        scrollToLastMessage()
+    }
+    
+    private func scrollToLastMessage() {
+        let lastRowIndex = viewModel.messages.count - 1
+        if lastRowIndex > 0 {
+            let lastIndexPath = IndexPath(row: lastRowIndex, section: 0)
+            [firstChatView.getTableView(), secondChatView.getTableView()].forEach { tableView in
+                DispatchQueue.main.async {
+                    tableView.scrollToRow(at: lastIndexPath, at: .bottom, animated: true)
+                }
+            }
+        }
     }
 }
 
@@ -165,6 +179,8 @@ extension ChatViewController: sendButtonDelegate {
             viewModel.createMessage(with: secondtext, senderID: 2)
             textField.text = ""
         }
+        scrollToLastMessage()
+//        viewModel.deleteAllData()
     }
 }
 
@@ -237,5 +253,6 @@ private extension ChatViewController {
         static let dividerViewHeight: CGFloat = 6
         static let firstChatViewBottomPadding: CGFloat = -30
         static let animationDuration: CGFloat = 0.5
+        static let switcherRightPadding: CGFloat = -20
     }
 }
