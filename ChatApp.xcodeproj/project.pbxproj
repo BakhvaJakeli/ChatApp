@@ -127,6 +127,7 @@
 		8F04CBE62A3211CC000A9BBB /* App */ = {
 			isa = PBXGroup;
 			children = (
+				8FF84C0229F94CA700A815E8 /* Constants */,
 				8F80CCC329F0586100F121BD /* SceneDelegate.swift */,
 				8F80CCC129F0586100F121BD /* AppDelegate.swift */,
 			);
@@ -188,7 +189,6 @@
 				8F04CBE82A32124A000A9BBB /* Core */,
 				8F04CBE62A3211CC000A9BBB /* App */,
 				8F04CBE32A321153000A9BBB /* Scenes */,
-				8FF84C0229F94CA700A815E8 /* Constants */,
 				8F80CCF629F5BF1C00F121BD /* Assets.xcassets */,
 				8F80CCCF29F0586300F121BD /* Info.plist */,
 			);
